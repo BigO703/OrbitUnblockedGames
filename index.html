@@ -516,11 +516,11 @@
           <div class="flex items-start gap-2.5">
             <span class="mt-0.5 px-1.5 py-0.5 bg-sky-500 text-slate-950 font-black text-[9px] uppercase tracking-wider font-mono animate-pulse shrink-0">ACTIVE HOST</span>
             <div class="space-y-0.5">
-              <p class="text-xs font-black uppercase text-white tracking-wider font-mono">FROGIEONE CLOAKED WEB PROXY DIRECTORY</p>
-              <p class="text-[10px] text-slate-400 leading-relaxed font-sans uppercase font-medium">To visit any site unblocked (e.g. youtube.com, discord.com), enter the address directly inside the <strong>FrogieOne Search Bar</strong> in the screen below!</p>
+              <p class="text-xs font-black uppercase text-white tracking-wider font-mono">XYLORA CLOAKED WEB PROXY DIRECTORY</p>
+              <p class="text-[10px] text-slate-400 leading-relaxed font-sans uppercase font-medium">To visit any site unblocked (e.g. youtube.com, discord.com), enter the address directly inside the <strong>Xylora Search Bar</strong> in the screen below!</p>
             </div>
           </div>
-          <button type="button" onclick="launchProxyLink('https://frogieone.theworkpc.com/')" class="px-3 py-1.5 bg-[#020617] hover:bg-slate-900 border border-[#1e293b] text-[10px] font-mono font-bold uppercase tracking-wider text-sky-400 hover:text-sky-350 cursor-pointer transition-all shrink-0">
+          <button type="button" onclick="launchProxyLink('https://xylora.expertdiagnoza.ro/')" class="px-3 py-1.5 bg-[#020617] hover:bg-slate-900 border border-[#1e293b] text-[10px] font-mono font-bold uppercase tracking-wider text-sky-400 hover:text-sky-350 cursor-pointer transition-all shrink-0">
             RESET PORTAL
           </button>
         </div>
@@ -588,7 +588,7 @@
                 </button>
 
                 <!-- 2. Movies / Play -->
-                <button type="button" onclick="launchProxyLink('https://frogieone.theworkpc.com/')" class="flex flex-col items-center justify-center aspect-square rounded-2xl bg-gradient-to-br from-indigo-950 to-[#020617] border border-slate-800 hover:border-purple-400/40 p-3 group transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 cursor-pointer">
+                <button type="button" onclick="launchProxyLink('https://xylora.expertdiagnoza.ro/')" class="flex flex-col items-center justify-center aspect-square rounded-2xl bg-gradient-to-br from-indigo-950 to-[#020617] border border-slate-800 hover:border-purple-400/40 p-3 group transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 cursor-pointer">
                   <div class="h-10 w-10 rounded-xl bg-purple-500/10 flex items-center justify-center mb-1 group-hover:bg-purple-500/20 text-purple-400">
                     <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z"/>
@@ -665,7 +665,7 @@
 
               <!-- Privacy Policy text link -->
               <div>
-                <button type="button" onclick="launchProxyLink('https://frogieone.theworkpc.com/')" class="text-[10px] text-sky-500/70 hover:text-sky-450 font-bold tracking-widest font-mono uppercase cursor-pointer transition-all">
+                <button type="button" onclick="launchProxyLink('https://xylora.expertdiagnoza.ro/')" class="text-[10px] text-sky-500/70 hover:text-sky-450 font-bold tracking-widest font-mono uppercase cursor-pointer transition-all">
                   privacy policy
                 </button>
               </div>
@@ -1487,20 +1487,20 @@
         let targetUrl = input.trim();
         if (!targetUrl) return;
 
-        // Ensure we direct to frogieone.theworkpc.com/ if not already loading it
-        const isFrogie = targetUrl.includes('frogieone.theworkpc.com');
-        let processedUrl = 'https://frogieone.theworkpc.com/';
+        // Ensure we direct to xylora.expertdiagnoza.ro/ if not already loading it
+        const isXylora = targetUrl.includes('xylora.expertdiagnoza.ro');
+        let processedUrl = 'https://xylora.expertdiagnoza.ro/';
 
-        if (isFrogie) {
+        if (isXylora) {
           processedUrl = targetUrl;
         } else {
-          inputProxyAddress.value = 'https://frogieone.theworkpc.com/';
+          inputProxyAddress.value = 'https://xylora.expertdiagnoza.ro/';
         }
 
         // Display spinner & status info
         proxySpinner.classList.remove('hidden');
         proxyEmptyPane.classList.add('hidden');
-        txtProxyActiveFrame.innerText = 'FROGIEONE PROXY ACTIVE';
+        txtProxyActiveFrame.innerText = 'XYLORA PROXY ACTIVE';
 
         // Push to routing history logs
         if (proxyHistoryIndex === -1 || proxyHistory[proxyHistoryIndex] !== processedUrl) {
@@ -1517,8 +1517,8 @@
 
       // External helper trigger for suggestion items click
       function launchProxyLink(link) {
-        inputProxyAddress.value = 'Proxying suggestions inside FrogieOne...';
-        launchProxyEngine('https://frogieone.theworkpc.com/');
+        inputProxyAddress.value = 'Proxying suggestions inside Xylora...';
+        launchProxyEngine('https://xylora.expertdiagnoza.ro/');
       }
 
       // Dock Navigation Global triggers supporting dynamic widgets
