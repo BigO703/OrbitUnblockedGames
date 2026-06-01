@@ -3,11 +3,1637 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
+    <title>Unblocked Games Hub</title>
+    <!-- Favicon ID to track camouflage presets dynamically -->
+    <link id="app-favicon" rel="icon" href="https://img.icons8.com/color/48/game-controller.png" />
+    
+    <!-- Modern Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+      
+      /* Smooth transitions and scrollbars */
+      .scrollbar-none::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-none {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      
+      /* Animation classes */
+      .fade-in {
+        animation: fadeInEffect 0.2s ease-out forwards;
+      }
+      @keyframes fadeInEffect {
+        from { opacity: 0; transform: translateY(4px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .scale-in {
+        animation: scaleInEffect 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      @keyframes scaleInEffect {
+        from { opacity: 0; transform: scale(0.97) translateY(8px); }
+        to { opacity: 1; transform: scale(1) translateY(0); }
+      }
+    </style>
   </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+  <body class="min-h-screen bg-[#020617] text-[#f1f5f9] font-sans flex flex-col antialiased">
+
+    <!-- TOP NAVIGATION HEADER BAR -->
+    <header class="border-b border-[#1e293b] bg-[#020617]/95 sticky top-0 backdrop-blur-xl z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+        <div id="btn-logo" class="flex items-center gap-3 cursor-pointer hover:opacity-90 transition-all select-none">
+          <div class="p-2 bg-sky-450 bg-sky-400 text-[#020617] rounded-none rotate-45 flex items-center justify-center">
+            <!-- Gamepad SVG -->
+            <svg class="-rotate-45" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="6" x2="10" y1="12" y2="12"></line>
+              <line x1="8" x2="8" y1="10" y2="14"></line>
+              <line x1="15" x2="15.01" y1="13" y2="13"></line>
+              <line x1="18" x2="18.01" y1="11" y2="11"></line>
+              <rect width="20" height="12" x="2" y="6" rx="3"></rect>
+            </svg>
+          </div>
+          <div class="pl-1">
+            <span class="font-black text-sm tracking-widest text-white uppercase block">
+              UNBLOCKED<span class="text-sky-400 ml-1.5 px-2 py-0.5 bg-sky-500/10 border border-sky-500/20 font-black text-[9px]">HUB</span>
+            </span>
+            <p class="text-[9px] text-slate-500 font-mono tracking-wider uppercase">SECURE SANDBOX EMULATION STATION</p>
+          </div>
+        </div>
+
+        <!-- Header Actions panel -->
+        <div class="flex items-center gap-2">
+          <!-- Embed URL Action Button -->
+          <button id="btn-add-game" class="p-1.5 px-3 rounded-none bg-sky-400 hover:bg-sky-305 text-slate-950 font-black transition-all flex items-center gap-1.5 text-[10px] uppercase tracking-widest shadow-md active:scale-95">
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
+            <span class="hidden md:inline">Embed Game</span>
+          </button>
+
+          <!-- Tab Cloaker Toggle Button -->
+          <button id="btn-cloak" class="p-1.5 px-3 rounded-none bg-[#0f172a] border border-[#1e293b] hover:text-sky-400 hover:border-sky-500/50 hover:bg-slate-900 text-slate-400 transition-all flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-wider">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 9.7a1 1 0 0 1-.68 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 .76-.97l8-2a1 1 0 0 1 .48 0l8 2A1 1 0 0 1 20 6z"></path></svg>
+            <span class="hidden md:inline font-bold">Cloaker</span>
+          </button>
+
+          <!-- PANIC EMERGENCY TRIGGER -->
+          <button id="btn-panic-exit" class="py-1.5 px-3 bg-rose-600 hover:bg-rose-500 text-white font-black text-[10px] uppercase tracking-widest rounded-none flex items-center gap-1.5 transition-all shadow-md active:scale-95 cursor-pointer">
+            <span class="w-1.5 h-1.5 rounded-none bg-white animate-ping"></span>
+            <span class="hidden sm:inline">PANIC EXIT</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- CORE VIEW CONTAINER FOR DIRECTORY OR PLAYER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grow flex flex-col w-full">
+      
+      <!-- LAYER 1: GAMES PORT DIRECTORY -->
+      <div id="view-directory" class="space-y-6 flex flex-col fade-in">
+        
+        <!-- Daily Microhero Status Card -->
+        <div class="bg-[#0f172a] border border-[#1e293b] rounded-none relative p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 overflow-hidden">
+          <div class="absolute top-0 right-0 w-[41%] h-full opacity-10 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-sky-400 via-transparent to-transparent"></div>
+          <div class="absolute inset-0 opacity-5 pointer-events-none bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:16px_16px]"></div>
+
+          <div class="space-y-2.5 relative z-10 max-w-xl">
+            <div class="flex items-center gap-2">
+              <span class="text-[8px] bg-sky-500/10 text-sky-400 font-mono tracking-widest font-extrabold uppercase px-2 py-0.5 rounded-none border border-sky-400/20 flex items-center gap-1">
+                <span class="w-1 h-1 bg-sky-400 rotate-45 inline-block animate-pulse"></span> OFFLINE STATE ACTIVE
+              </span>
+            </div>
+            <h1 id="hourly-hero-greeting" class="text-xl md:text-2xl font-black text-white tracking-tight uppercase">
+              WELCOME BACK, PLAYER!
+            </h1>
+            <p class="text-slate-400 text-xs leading-relaxed max-w-md font-sans">
+              Execute robust unblocked sandbox emulation ports immediately. Bookmark your favorites, customize cloaking parameters, and embed any raw sandboxed frames with zero code limitations.
+            </p>
+          </div>
+
+          <!-- Micro Statistics Board -->
+          <div class="grid grid-cols-3 gap-2.5 lg:w-96 relative z-10 font-mono">
+            <div class="bg-[#020617] p-2.5 rounded-none border border-[#1e293b] text-center">
+              <span class="text-slate-500 text-[8px] block font-black uppercase tracking-wider">INDEX PORTS</span>
+              <span id="stat-slots-count" class="text-base md:text-lg font-black text-white mt-0.5 block">10</span>
+            </div>
+            <div class="bg-[#020617] p-2.5 rounded-none border border-[#1e293b] text-center">
+              <span class="text-slate-500 text-[8px] block font-black uppercase tracking-wider">SAVED FAVS</span>
+              <span id="stat-favs-count" class="text-base md:text-lg font-black text-pink-500 mt-0.5 block">0</span>
+            </div>
+            <div class="bg-[#020617] p-2.5 rounded-none border border-[#1e293b] text-center">
+              <span class="text-slate-500 text-[8px] block font-black uppercase tracking-wider">LOBBY PLAYS</span>
+              <span id="stat-plays-count" class="text-base md:text-lg font-black text-sky-400 mt-0.5 block">214,190</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categorization, Sorts, and Realtime Controls Header -->
+        <div class="flex flex-col md:flex-row gap-4 items-center justify-between pt-2">
+          <!-- Dynamic Category Tabs -->
+          <div id="tabs-container" class="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
+            <!-- Rendered beautifully via JS on load -->
+          </div>
+
+          <!-- Sorting Filters Picker -->
+          <div class="flex items-center gap-2 w-full md:w-auto shrink-0 justify-end">
+            <div class="text-slate-500 text-[10px] flex items-center gap-1.5 uppercase font-mono font-black">
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="4" y1="21" y2="14"></line><line x1="4" x2="4" y1="10" y2="3"></line><line x1="12" x2="12" y1="21" y2="12"></line><line x1="12" x2="12" y1="8" y2="3"></line><line x1="20" x2="20" y1="21" y2="16"></line><line x1="20" x2="20" y1="12" y2="3"></line><line x1="2" x2="6" y1="14" y2="14"></line><line x1="10" x2="14" y1="8" y2="8"></line><line x1="18" x2="22" y1="16" y2="16"></svg>
+              <span>SORT FILTER:</span>
+            </div>
+            <select id="select-sort" class="bg-[#0f172a] border border-[#1e293b] text-[10px] text-slate-300 font-bold px-2.5 py-1.5 rounded-none focus:outline-none focus:border-sky-500 uppercase font-mono cursor-pointer">
+              <option value="plays">MOST PLAYED SLOTS</option>
+              <option value="rating">TOP CRITIC RATINGS</option>
+              <option value="title">ALPHABETICAL (A-Z)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Search query filters -->
+        <div class="relative">
+          <span class="absolute left-3.5 top-3.5 text-slate-500">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </span>
+          <input id="input-search" type="text" placeholder="Query unblocked sandbox indexes (Classic Pac Doodle, 2048, sandspiel, tetris slots)..." class="w-full bg-[#0f172a] border border-[#1e293b] rounded-none pl-10 pr-16 py-3.5 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-sky-505 shadow-inner" />
+          <button id="btn-reset-search" class="absolute hidden right-3.5 top-3 text-[8px] text-slate-400 hover:text-white bg-[#020617] border border-[#1e293b] px-2 py-1 rounded-none font-mono uppercase font-black">
+            RESET
+          </button>
+        </div>
+
+        <!-- Main Cards Emulation Grid -->
+        <div id="games-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 fade-in">
+          <!-- Rendered dynamically by browser script -->
+        </div>
+
+        <!-- Directory Empty Results Notification Panel -->
+        <div id="empty-directory" class="py-16 text-center text-slate-500 border border-dashed border-[#1e293b] rounded-none max-w-sm mx-auto w-full hidden flex flex-col items-center justify-center p-6 space-y-4 fade-in">
+          <div class="p-4 bg-[#0f172a] border border-[#1e293b]">
+            <svg class="text-sky-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" x2="10" y1="12" y2="12"></line><line x1="8" x2="8" y1="10" y2="14"></line><line x1="15" x2="15.01" y1="13" y2="13"></line><line x1="18" x2="18.01" y1="11" y2="11"></line><rect width="20" height="12" x="2" y="6" rx="3"></rect></svg>
+          </div>
+          <div>
+            <h4 class="text-white font-black text-xs uppercase tracking-wider">No Lobby items Found</h4>
+            <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">
+              We could not find any sandbox games matching the active query index filter.
+            </p>
+          </div>
+          <button id="btn-reset-filters" class="px-3 py-1.5 bg-[#0f172a] border border-[#1e293b] text-slate-300 hover:text-white rounded-none text-[10px] font-mono uppercase font-bold">
+            RESET ALL FILTERS
+          </button>
+        </div>
+
+      </div>
+
+      <!-- LAYER 2: INTERACTIVE EMULATION PLAYER viewport -->
+      <div id="view-player" class="hidden transition-all duration-300 space-y-4 fade-in">
+        <!-- Back Navigation panel -->
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <button id="btn-player-back" class="flex items-center gap-2 px-3 py-1.5 text-xs text-slate-400 hover:text-white bg-[#0f172a] border border-[#1e293b] rounded-none transition-all uppercase font-mono font-bold tracking-wider">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 19-7-7 7-7"/></svg>
+            EXIT TO LOBBY
+          </button>
+
+          <!-- Immediate Quick-Panic Bar -->
+          <div class="flex items-center gap-2">
+            <button id="btn-panic-player" class="flex items-center gap-1.5 px-3 py-1.5 bg-rose-600 hover:bg-rose-500 text-white text-[11px] font-black tracking-wider uppercase rounded-none transition-all shadow-md active:scale-95 cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>PANIC ACTIVATOR</span>
+            </button>
+
+            <!-- Theater view helper toggler -->
+            <button id="btn-player-theater" class="flex items-center gap-1.5 px-3 py-1.5 text-xs bg-[#0f172a] border border-[#1e293b] text-slate-400 hover:text-white rounded-none transition-all font-mono uppercase font-bold tracking-wider">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+              <span id="txt-theater">THEATRE SCREEN</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Theater grid configuration wrapper -->
+        <div id="player-grid-box" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          <!-- Column A: Game View frame port -->
+          <div class="lg:col-span-8 flex flex-col gap-4">
+            <div id="iframe-viewport-container" class="relative aspect-video w-full bg-[#020617] rounded-none border border-[#1e293b] shadow-2xl flex flex-col overflow-hidden" style="min-height: 480px;">
+              
+              <!-- Loader visual overlay -->
+              <div id="iframe-loader" class="absolute inset-0 bg-[#020617] flex flex-col items-center justify-center text-center p-6 z-10">
+                <div class="relative mb-4">
+                  <div class="w-10 h-10 border-2 border-sky-400/20 border-t-sky-400 rounded-none animate-spin"></div>
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <svg class="text-sky-450 animate-bounce" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" x1="10" y1="12" y2="12"></line><line x1="8" x1="8" y1="10" y2="14"></line><rect width="20" height="12" x="2" y="6" rx="3"></rect></svg>
+                  </div>
+                </div>
+                <h4 class="text-xs font-black uppercase text-white tracking-widest mb-1">CONNECTING SIMULATOR PORT...</h4>
+                <p class="text-[10px] uppercase font-mono text-slate-500 max-w-xs leading-relaxed">
+                  Securing active sandbox unblocked coordinates.
+                </p>
+                <button id="btn-force-frame" class="mt-4 px-3 py-1 bg-[#0f172a] border border-[#1e293b] text-[9px] uppercase font-mono text-slate-300 hover:text-white transition-all rounded-none">
+                  Force Render Wrapper Frame
+                </button>
+              </div>
+
+              <!-- Iframe slot -->
+              <iframe id="iframe-play" class="w-full grow h-full border-0 bg-[#020617]" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups"></iframe>
+
+              <!-- Dynamic Player Bar footer -->
+              <div class="bg-[#0f172a] border-t border-[#1e293b] px-4 py-3 flex items-center justify-between text-slate-400 text-xs select-none">
+                <div class="flex items-center gap-3 font-mono text-[11px] uppercase tracking-wider">
+                  <span class="w-2 h-2 bg-sky-400 rotate-45 animate-pulse"></span>
+                  <span id="player-title" class="font-extrabold text-white">GAME_TITLE</span>
+                  <span id="player-custom-badge" class="text-[8px] bg-sky-500/10 text-sky-400 font-bold px-1.5 py-0.5 rounded-none border border-sky-400/20 hidden">USER ADDED</span>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <button id="btn-player-reload" class="p-1 px-2.5 bg-[#020617] border border-[#1e293b] text-slate-300 hover:text-white hover:border-sky-450 rounded-none transition-all flex items-center gap-1.5 text-[10px] font-mono uppercase font-bold">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                    <span>RESTAGE</span>
+                  </button>
+
+                  <button id="btn-player-favorite" class="p-1 px-2.5 bg-[#020617] border border-[#1e293b] rounded-none transition-all flex items-center gap-1.5 text-[10px] font-mono uppercase font-bold hover:text-pink-400 hover:border-pink-500/40">
+                    <svg id="svg-heart-player" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                    <span id="txt-player-favorite">FAVORITE</span>
+                  </button>
+
+                  <button id="btn-player-fullscreen" class="p-1 px-2.5 bg-[#020617] border border-[#1e293b] text-slate-300 hover:text-white hover:border-sky-450 rounded-none transition-all flex items-center gap-1.5 text-[10px] font-mono uppercase font-bold">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                    <span>FULLSCREEN</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Notice below gameplay video -->
+            <div class="bg-[#0f172a] border border-[#1e293b] rounded-none p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 select-none">
+              <div class="flex items-start gap-3">
+                <span class="text-sky-400 text-sm mt-0.5 font-bold font-mono">▶</span>
+                <div>
+                  <h5 class="text-[11px] font-black uppercase text-slate-200 tracking-wider">Lobby Sandbox Execution Notice</h5>
+                  <p class="text-[11px] text-slate-400 leading-relaxed mt-0.5 font-sans">
+                    Click directly inside the emulator viewport frame above to activate input controls focus. All data variables run strictly unblocked.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 self-end md:self-auto shrink-0 text-[10px] text-slate-500 bg-[#020617] border border-[#1e293b] px-3 py-1 font-mono uppercase tracking-wider">
+                <span>RATING SCORE:</span>
+                <span class="text-yellow-400 font-extrabold flex items-center gap-0.5">
+                  <span class="text-sky-400">★</span> <span id="player-rating-val">4.8</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column B: Side tabs & score logging tracker -->
+          <div class="lg:col-span-4 flex flex-col gap-4">
+            <div class="bg-[#0f172a] w-full rounded-none border border-[#1e293b] text-white overflow-hidden shadow-xl">
+              <!-- Sidebar Selectors -->
+              <div class="flex border-b border-[#1e293b] bg-[#020617] font-mono select-none">
+                <button id="tab-btn-info" class="flex-1 py-3 text-center text-[10px] uppercase tracking-widest font-black border-b-2 transition-all flex items-center justify-center gap-1.5 border-sky-400 text-white bg-sky-500/5">
+                  DETAILS
+                </button>
+                <button id="tab-btn-controls" class="flex-1 py-3 text-center text-[10px] uppercase tracking-widest font-black border-b-2 transition-all flex items-center justify-center gap-1.5 border-transparent text-slate-500 hover:text-slate-300">
+                  CONTROLS
+                </button>
+                <button id="tab-btn-tracker" class="flex-1 py-3 text-center text-[10px] uppercase tracking-widest font-black border-b-2 transition-all flex items-center justify-center gap-1.5 border-transparent text-slate-500 hover:text-slate-300">
+                  LEDGER LOG
+                </button>
+              </div>
+
+              <!-- Content Panels -->
+              <div class="p-5 min-h-[360px] flex flex-col bg-[#0f172a]">
+                
+                <!-- Tab Panel 1: Details description -->
+                <div id="panel-info" class="space-y-4 fade-in">
+                  <div class="flex items-center justify-between">
+                    <span id="player-category" class="text-[9px] bg-sky-500/10 text-sky-400 border border-sky-550/20 font-mono font-bold px-2 py-0.5 uppercase tracking-widest">
+                      PUZZLE
+                    </span>
+                    <span id="player-plays" class="text-[10px] text-slate-500 font-mono">
+                      24,890 SEEDING PLAYS
+                    </span>
+                  </div>
+
+                  <h3 id="panel-game-title" class="text-md font-black text-white uppercase block">
+                    GAME TITLE
+                  </h3>
+
+                  <p id="player-desc" class="text-xs text-slate-400 leading-relaxed font-sans">
+                    Slide matching number tiles together to double their value. Can you combine your way up to the legendary 2048 tile in this timeless grid-addictive puzzle?
+                  </p>
+
+                  <div class="pt-2">
+                    <div class="bg-[#020617] p-3 border border-[#1e293b] space-y-1 font-mono">
+                      <span class="text-slate-500 text-[9px] font-black block uppercase tracking-widest">
+                        SERVER SOURCE CONTRIB
+                      </span>
+                      <p id="player-developer" class="text-slate-300 font-bold text-xs uppercase">Gabriele Cirulli</p>
+                    </div>
+                  </div>
+
+                  <div class="pt-2 bg-sky-400/5 border border-sky-505/10 p-3">
+                    <h5 class="text-[10px] font-black text-sky-400 flex items-center gap-1.5 uppercase tracking-widest font-mono">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/></svg>
+                      Sandbox Safe Port
+                    </h5>
+                    <p class="text-[10.5px] text-slate-400 mt-1 leading-relaxed font-sans">
+                      This game sandbox is strictly isolated from parent frames. Adware programs and unrequested tracker networks remain completely offline.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Tab Panel 2: Controls keyboard mappings -->
+                <div id="panel-controls" class="space-y-4 hidden flex flex-col h-full grow fade-in">
+                  <div class="space-y-1">
+                    <span class="text-[9px] text-slate-500 font-black uppercase tracking-widest font-mono block">
+                      GAMEPLAY KEYBOARD MAPPINGS
+                    </span>
+                    <p class="text-xs text-slate-405 text-slate-400 font-sans">
+                      Standard computer layouts map down to these commands:
+                    </p>
+                  </div>
+
+                  <div id="controls-list-box" class="space-y-2 max-h-[220px] overflow-y-auto pr-1 grow scrollbar-none font-mono">
+                    <!-- Loaded dynamically via JS -->
+                  </div>
+
+                  <div class="bg-[#020617] p-3 border border-[#1e293b] flex items-center gap-2.5 text-[9.5px] text-slate-500 leading-tight uppercase font-mono tracking-wider mt-auto select-none">
+                    <span class="text-sky-405 text-sky-400">●</span>
+                    <span>Supports standard offline keyboard registers inside emulation frames.</span>
+                  </div>
+                </div>
+
+                <!-- Tab Panel 3: Score Logger tracker ledger -->
+                <div id="panel-tracker" class="space-y-4 hidden flex flex-col h-full grow fade-in">
+                  <div class="space-y-1">
+                    <span class="text-[9px] text-slate-500 font-black uppercase tracking-widest font-mono block">
+                      PERSONAL LEDGER RECORDS
+                    </span>
+                    <p class="text-xs text-slate-400 font-sans">
+                      Locally catalog your custom achievements on this device.
+                    </p>
+                  </div>
+
+                  <!-- Logging Submission form -->
+                  <form id="ledger-form" class="space-y-2 bg-[#020617] p-3 border border-[#1e293b] font-mono">
+                    <div class="grid grid-cols-1 gap-2">
+                      <input id="input-score" type="text" placeholder="SCORE / RECORD (e.g. 5,020 points)" class="bg-[#0f172a] border border-[#1e293b] rounded-none px-2.5 py-1.5 text-xs text-white uppercase placeholder-slate-605 focus:outline-none focus:border-sky-500" required />
+                      <input id="input-notes" type="text" placeholder="CAMPAIGN NOTES (e.g. Completed speedrun)" class="bg-[#0f172a] border border-[#1e293b] rounded-none px-2.5 py-1.5 text-xs text-white placeholder-slate-605 focus:outline-none focus:border-sky-505" />
+                    </div>
+                    <button type="submit" class="w-full py-1.5 bg-sky-400 hover:bg-sky-300 text-[#020617] text-[10px] font-black uppercase tracking-wider rounded-none transition-all flex items-center justify-center gap-1 active:scale-[0.99]">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
+                      ENTER RECORD
+                    </button>
+                  </form>
+
+                  <!-- History List Logs -->
+                  <div id="scores-history-list" class="space-y-2 min-h-0 overflow-y-auto max-h-[160px] pr-1">
+                    <!-- Logs loaded in via JS -->
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+    <!-- SYSTEM OUT-OF-SIGHT DECIMAL FOOTER -->
+    <footer class="mt-auto border-t border-[#1e293b] text-slate-600 py-6 text-center text-[10px] bg-[#020617] uppercase tracking-wide">
+      <div class="max-w-7xl mx-auto px-4 space-y-2">
+        <p class="leading-relaxed font-mono">
+          Unblocked Games Hub is an open port directory designed for static offline emulation tests. Sourced via static frames.
+        </p>
+        <div class="flex justify-center items-center gap-3 text-slate-500 font-mono">
+          <span>Decoy Status: <strong class="text-sky-400">ACTIVE</strong></span>
+          <span>•</span>
+          <span>Emergency Panic Key: <strong id="foot-panic-key" class="text-sky-400">[`]</strong></span>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- MODALE OVERLAY A: CAMO MASTER CLOAKER SETTINGS -->
+    <div id="modal-cloak" class="fixed inset-0 z-50 bg-[#020617]/85 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+      <div class="fixed inset-0 cursor-pointer" onclick="toggleCloakModal(false)"></div>
+      <div class="relative z-10 w-full max-w-md bg-[#0f172a] border border-[#1e293b] rounded-none p-6 shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto scale-in">
+        
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="p-2 bg-sky-500/10 text-sky-400 rotate-45 border border-sky-500/20">
+              <svg class="-rotate-45" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 9.7a1 1 0 0 1-.68 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 .76-.97l8-2a1 1 0 0 1 .48 0l8 2A1 1 0 0 1 20 6z"></path></svg>
+            </div>
+            <div class="pl-2">
+              <h3 class="font-extrabold text-white text-md uppercase tracking-wider">Camo & Cloaking</h3>
+              <p class="text-[11px] text-slate-400 uppercase tracking-widest font-mono">TAB DISGUISE ENGINE</p>
+            </div>
+          </div>
+        </div>
+
+        <hr class="border-[#1e293b]" />
+
+        <!-- Tab cloaks options -->
+        <div class="space-y-3">
+          <label class="text-[10px] font-black text-slate-350 uppercase tracking-widest block flex items-center gap-2">
+            <span class="w-1.5 h-1.5 bg-sky-400 rotate-45"></span> TAB CLOAK PRESETS
+          </label>
+          <p class="text-xs text-slate-400 leading-normal">
+            Change the web tab title and icon instantly to pass off as standard coursework.
+          </p>
+
+          <div id="camo-presets-box" class="grid grid-cols-1 gap-2 font-sans">
+            <!-- Camo presets lists populated by JS -->
+          </div>
+        </div>
+
+        <hr class="border-[#1e293b]" />
+
+        <!-- Key binder segment -->
+        <div class="space-y-4">
+          <div>
+            <label class="text-[10px] font-black text-slate-350 uppercase tracking-widest block flex items-center gap-2">
+              <span class="w-1.5 h-1.5 bg-sky-400 rotate-45"></span> PANIC KEY SHORTCUT REDIRECT
+            </label>
+            <p class="text-xs text-slate-400 mt-1 leading-normal">
+              Press this key anywhere to trigger instant evacuation of the browser viewport.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-[#020617] p-3 border border-[#1e293b] flex flex-col justify-between space-y-2">
+              <span class="text-[9px] text-slate-500 uppercase font-black font-mono">PANIC HOTKEY</span>
+              <button id="btn-bind-key" type="button" class="py-1.5 px-3 rounded-none text-xs font-mono font-black transition-all text-center bg-slate-800 text-sky-400 border border-slate-700 hover:bg-slate-700">
+                `
+              </button>
+            </div>
+
+            <div class="bg-[#020617] p-3 border border-[#1e293b] flex flex-col justify-between space-y-2">
+              <span class="text-[9px] text-slate-500 uppercase font-black font-mono">PRESETS</span>
+              <div class="flex flex-col gap-1 font-mono text-[9px]">
+                <button type="button" onclick="assignPanicKey('`')" class="py-1 hover:bg-slate-800 text-slate-450 hover:text-white text-center transition-all">Backquote (`)</button>
+                <button type="button" onclick="assignPanicKey('Escape')" class="py-1 hover:bg-slate-800 text-slate-450 hover:text-white text-center transition-all">Escape (Esc)</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-1.5 font-mono">
+            <label class="text-[9px] text-slate-500 uppercase font-bold block">REDIRECT TARGET DESTINATION</label>
+            <div id="camo-target-redirect-box" class="flex gap-2">
+              <input id="input-panic-url" type="text" placeholder="https://..." class="bg-[#020617] border border-[#1e293b] rounded-none px-3 py-1.5 text-xs text-white focus:outline-none focus:border-sky-505 grow font-mono" />
+              <button id="btn-reset-panic-url" type="button" class="px-3 py-1.5 rounded-none bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 border border-slate-700 font-bold">
+                CLASSROOM
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guide below settings -->
+        <div class="bg-[#020617] border border-[#1e293b] p-3 rounded-none flex items-start gap-2.5">
+          <span class="text-sky-400 text-xs font-black">●</span>
+          <p class="text-[11.5px] text-slate-400 leading-normal font-sans">
+            Hitting the active panic key immediately transfers page variables and navigates active web tab variables straight to classroom indices.
+          </p>
+        </div>
+
+        <button type="button" onclick="toggleCloakModal(false)" class="w-full py-2.5 bg-sky-400 hover:bg-sky-305 text-slate-950 font-black rounded-none text-xs uppercase tracking-widest transition-all shadow-lg">
+          SAVE & CLOSE Cloaker
+        </button>
+      </div>
+    </div>
+
+
+    <!-- MODALE OVERLAY B: EMBED ANY BRAND NEW IFRAME URL -->
+    <div id="modal-add-game" class="fixed inset-0 z-50 bg-[#020617]/85 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+      <div class="fixed inset-0 cursor-pointer" onclick="toggleAddGameModal(false)"></div>
+      <div class="relative z-10 w-full max-w-lg bg-[#0f172a] border border-[#1e293b] rounded-none p-6 shadow-2xl space-y-6 scale-in">
+        
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="p-2 bg-sky-505/10 bg-sky-500/10 text-sky-400 rotate-45 border border-sky-500/20">
+              <svg class="-rotate-45" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
+            </div>
+            <div class="pl-2">
+              <h3 class="font-extrabold text-white text-md uppercase tracking-wider">Embed Custom IFrame</h3>
+              <p class="text-[11px] text-slate-400 uppercase tracking-widest font-mono">PORT NEW UNBLOCKED URL Link</p>
+            </div>
+          </div>
+        </div>
+
+        <hr class="border-[#1e293b]" />
+
+        <!-- IFrame Embedding Form -->
+        <form id="form-embed-game" class="space-y-4 font-mono">
+          <div class="space-y-1">
+            <label class="text-[10px] text-slate-450 text-slate-400 font-bold uppercase tracking-wider block">Game / Iframe Title</label>
+            <input id="embed-title" type="text" placeholder="e.g., retro emulator, snake, 1v1 battle" class="w-full bg-[#020617] border border-[#1e293b] px-3.5 py-2 text-xs text-white placeholder-slate-700 focus:outline-none focus:border-sky-500" required />
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-[10px] text-slate-450 text-slate-400 font-bold uppercase tracking-wider block">IFRAME SRC URL</label>
+            <input id="embed-url" type="url" placeholder="https://..." class="w-full bg-[#020617] border border-[#1e293b] px-3.5 py-2 text-xs text-white placeholder-slate-700 focus:outline-none focus:border-sky-500" required />
+            <span class="text-[9px] text-slate-500 leading-normal block">Make sure you input a solid HTTP Secure (https://) link to prevent sandboxed mixed-content frames blocks.</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-1">
+              <label class="text-[10px] text-slate-450 text-slate-400 font-bold uppercase tracking-wider block">Port Category</label>
+              <select id="embed-category" class="w-full bg-[#020617] border border-[#1e293b] px-3.5 py-2 text-xs text-white focus:outline-none focus:border-sky-500 uppercase">
+                <option value="Arcade">Arcade</option>
+                <option value="Puzzle">Puzzle</option>
+                <option value="Strategy">Strategy</option>
+                <option value="Classic">Classic</option>
+                <option value="Creative">Creative</option>
+              </select>
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-[10px] text-slate-450 text-slate-400 font-bold uppercase tracking-wider block">Game Icon</label>
+              <select id="embed-icon" class="w-full bg-[#020617] border border-[#1e293b] px-3.5 py-2 text-xs text-white focus:outline-none focus:border-sky-500 uppercase">
+                <option value="Gamepad2">GAMEPAD CONTROLLER</option>
+                <option value="Grid3X3">GRID BOARD</option>
+                <option value="Hexagon">HEXAGON SHAPE</option>
+                <option value="CircleDot">PAC-DOT RETRO</option>
+                <option value="Square">NEON BLOCK SQUARE</option>
+                <option value="Activity">T-REX PULSE LINE</option>
+                <option value="Sparkles">SPARKLE SPECIALS</option>
+                <option value="Rocket">SPACE ROCKET</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-[10px] text-slate-450 text-slate-400 font-bold uppercase tracking-wider block">Description / Notes</label>
+            <textarea id="embed-desc" rows="2" placeholder="Describe controls or details about this custom play node..." class="w-full bg-[#020617] border border-[#1e293b] px-3.5 py-2 text-xs text-white placeholder-slate-700 focus:outline-none focus:border-sky-500 font-sans"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-3 bg-sky-450 bg-sky-400 hover:bg-sky-305 text-slate-950 font-black rounded-none text-xs uppercase tracking-widest transition-all">
+            EMBED IN PORT LOGS
+          </button>
+        </form>
+      </div>
+    </div>
+
+
+    <!-- DYNAMIC CORE CLIENT-SIDE ENGINE -->
+    <script>
+      // STATIC CATALOG DATA - PRE-INLINED (Prevents CORS / local fetch filesystem blockades)
+      const DEFAULT_GAMES_CATALOG = [
+        {
+          "id": "2048",
+          "title": "2048",
+          "category": "Puzzle",
+          "description": "Slide matching number tiles together to double their value. Can you combine your way up to the legendary 2048 tile in this timeless grid-addictive puzzle?",
+          "controls": [
+            "Arrow Keys / WASD: Slide tiles in all four directions",
+            "R: Restart the current session"
+          ],
+          "iframeUrl": "https://gabrielecirulli.github.io/2048/",
+          "rating": 4.8,
+          "plays": 24890,
+          "developer": "Gabriele Cirulli",
+          "icon": "Grid3X3"
+        },
+        {
+          "id": "hextris",
+          "title": "Hextris",
+          "category": "Arcade",
+          "description": "Rotate the central hexagon to match falling colored bars. Stack three or more blocks of the same color on a face to clear them and prevent the hex from filling up!",
+          "controls": [
+            "Left & Right Arrows / AD: Rotate hexagon counter-clockwise/clockwise",
+            "Down Arrow / S: Instant drop the block"
+          ],
+          "iframeUrl": "https://hextris.github.io/hextris/",
+          "rating": 4.6,
+          "plays": 15420,
+          "developer": "Hextris Team",
+          "icon": "Hexagon"
+        },
+        {
+          "id": "google-pacman",
+          "title": "Pac-Man Doodle",
+          "category": "Classic",
+          "description": "The official 30th-anniversary interactive Google doodle of the beloved Pac-Man arcade. Escape the colorful ghosts Blinky, Pinky, Inky, and Clyde while eating dots!",
+          "controls": [
+            "Arrow Keys / WASD: Control Pac-Man's movement",
+            "Enter / Click: Start / Insert Coin"
+          ],
+          "iframeUrl": "https://macek.github.io/google_pacman/",
+          "rating": 4.9,
+          "plays": 48310,
+          "developer": "Google / Bandai Namco",
+          "icon": "CircleDot"
+        },
+        {
+          "id": "tetris",
+          "title": "React Tetris",
+          "category": "Classic",
+          "description": "A high-fidelity retro Tetris experience with clean neon graphics, keyboard inputs, sound controls, and precise tetronimo drop physics.",
+          "controls": [
+            "Left / Right Arrow: Move Tetronimo",
+            "Up Arrow / X: Rotate Clockwise",
+            "Z: Rotate Counter-Clockwise",
+            "Spacebar: Hard Drop",
+            "Down Arrow: Soft Drop"
+          ],
+          "iframeUrl": "https://chvin.github.io/react-tetris/",
+          "rating": 4.9,
+          "plays": 39512,
+          "developer": "Chvin",
+          "icon": "Square"
+        },
+        {
+          "id": "chrome-dino",
+          "title": "T-Rex Dino Runner",
+          "category": "Arcade",
+          "description": "The classic Chrome offline Easter egg game. Control the running T-Rex as it dodges cacti and swooping pterodactyls in an endless desert scroll.",
+          "controls": [
+            "Spacebar / Up Arrow: Jump up over obstacles",
+            "Down Arrow: Duck under flying dinosaurs"
+          ],
+          "iframeUrl": "https://wayou.github.io/t-rex-runner/",
+          "rating": 4.4,
+          "plays": 19430,
+          "developer": "Google Chromium",
+          "icon": "Activity"
+        },
+        {
+          "id": "sandspiel",
+          "title": "Sandspiel",
+          "category": "Creative",
+          "description": "An interactive falling-sand physics playground. Mix materials like sand, water, fire, lava, plants, and wind, and watch real-time chemical reactions unfold.",
+          "controls": [
+            "Left Click / Drag: Draw selected element",
+            "Material Toolbar: Click to select material type",
+            "C: Clear canvas to start fresh"
+          ],
+          "iframeUrl": "https://sandspiel.club/",
+          "rating": 4.9,
+          "plays": 28410,
+          "developer": "Max Bittker",
+          "icon": "Sparkles"
+        },
+        {
+          "id": "flappy-bird",
+          "title": "Floppy Bird",
+          "category": "Arcade",
+          "description": "Flap your wings to fly through narrow pipe gaps! A popular unblocked open-source recreate of Flappy Bird that tests your rhythm, timing, and patience.",
+          "controls": [
+            "Spacebar / Click: Flap wings and gain altitude",
+            "Click to restart after a crash"
+          ],
+          "iframeUrl": "https://nebez.github.io/floppybird/",
+          "rating": 4.2,
+          "plays": 12900,
+          "developer": "Nebez",
+          "icon": "Bird"
+        },
+        {
+          "id": "minesweeper",
+          "title": "Classic Minesweeper",
+          "category": "Puzzle",
+          "description": "The retro Windows OS classic. Clear a gridded minefield without detonating a single bomb. Use numerical hints on tiles to locate hidden danger spots.",
+          "controls": [
+            "Left Click: Reveal grid tile contents",
+            "Right Click / Alt+Click: Place or remove a warning flag",
+            "Click Smile Emoji: Reset and load a new board"
+          ],
+          "iframeUrl": "https://1000101.github.io/minesweeper/",
+          "rating": 4.5,
+          "plays": 8410,
+          "developer": "1000101 GitHub",
+          "icon": "Bomb"
+        },
+        {
+          "id": "tower-game",
+          "title": "Tower Bridge Blaster",
+          "category": "Arcade",
+          "description": "Test your timing and precision by stacking heavy block layers perfectly on top of each other. Keep the tower stable as the stacks rise to the limit!",
+          "controls": [
+            "Left Click / Spacebar: Drop the sliding block onto the tower base",
+            "Ensure block falls directly on the layer below"
+          ],
+          "iframeUrl": "https://clunyet.github.io/tower_game/",
+          "rating": 4.3,
+          "plays": 9780,
+          "developer": "Clunyet",
+          "icon": "Layers"
+        },
+        {
+          "id": "asteroids",
+          "title": "Asteroids Vector",
+          "category": "Classic",
+          "description": "Command a small triangular ship in an outer space asteroid field. Fire lasers and destroy tumbling rocks before they crash into your thruster shield.",
+          "controls": [
+            "Left / Right Arrow: Rotate ship",
+            "Up Arrow / W: Accelerate forward with thruster booster",
+            "Spacebar: Fire laser blasters",
+            "Shift: Hyper-space teleport"
+          ],
+          "iframeUrl": "https://diana-adrianas.github.io/asteroids/",
+          "rating": 4.7,
+          "plays": 13110,
+          "developer": "Diana Adrianas",
+          "icon": "Rocket"
+        }
+      ];
+
+      const CLOAK_PRESETS = [
+        {
+          id: 'normal',
+          name: 'Normal (None)',
+          title: 'Unblocked Games Hub',
+          iconUrl: 'https://img.icons8.com/color/48/game-controller.png',
+        },
+        {
+          id: 'gdocs',
+          name: 'Google Docs',
+          title: 'Focus Proposal.docx - Google Docs',
+          iconUrl: 'https://ssl.gstatic.com/docs/documents/images/kix-favicon-2023.ico',
+        },
+        {
+          id: 'gclassroom',
+          name: 'Google Classroom',
+          title: 'Classes - Google Classroom',
+          iconUrl: 'https://ssl.gstatic.com/classroom/favicon.png',
+        },
+        {
+          id: 'gdrive',
+          name: 'Google Drive',
+          title: 'My Drive - Google Drive',
+          iconUrl: 'https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png',
+        },
+        {
+          id: 'canvas',
+          name: 'Canvas LMS',
+          title: 'Dashboard - Canvas LMS',
+          iconUrl: 'https://canvas.instructure.com/favicon.ico',
+        },
+      ];
+
+      // STATE LOGS
+      let currentGames = [];
+      let selectedGame = null;
+      let activeCategory = 'All';
+      let searchQuery = '';
+      let sortBy = 'plays';
+      let activePlayerTab = 'info';
+      let isBindingKey = false;
+
+      // Persistence Storage states
+      let favorites = JSON.parse(localStorage.getItem('games_favorites_list')) || [];
+      let customGames = JSON.parse(localStorage.getItem('games_user_custom_list')) || [];
+      let activeCamoPresetId = localStorage.getItem('games_camo_preset') || 'normal';
+      let panicKey = localStorage.getItem('games_panic_key') || '`';
+      let panicRedirect = localStorage.getItem('games_panic_redirect') || 'https://classroom.google.com';
+
+      // HTML DOM selectors
+      const viewDirectory = document.getElementById('view-directory');
+      const viewPlayer = document.getElementById('view-player');
+      const gamesGrid = document.getElementById('games-grid');
+      const emptyDir = document.getElementById('empty-directory');
+      const tabsContainer = document.getElementById('tabs-container');
+      const selectSort = document.getElementById('select-sort');
+      const inputSearch = document.getElementById('input-search');
+      const btnResetSearch = document.getElementById('btn-reset-search');
+      const greetingHeader = document.getElementById('hourly-hero-greeting');
+
+      // Top Actions Bar selectors
+      const btnLogo = document.getElementById('btn-logo');
+      const btnAddGame = document.getElementById('btn-add-game');
+      const btnCloak = document.getElementById('btn-cloak');
+      const btnPanicExit = document.getElementById('btn-panic-exit');
+
+      // Emulation window selectors
+      const btnPlayerBack = document.getElementById('btn-player-back');
+      const btnPanicPlayer = document.getElementById('btn-panic-player');
+      const btnPlayerTheater = document.getElementById('btn-player-theater');
+      const txtTheater = document.getElementById('txt-theater');
+      const playerGridBox = document.getElementById('player-grid-box');
+      const iframeContainer = document.getElementById('iframe-viewport-container');
+      const iframeLoader = document.getElementById('iframe-loader');
+      const btnForceFrame = document.getElementById('btn-force-frame');
+      const iframePlay = document.getElementById('iframe-play');
+      const playerTitleText = document.getElementById('player-title');
+      const playerCustomBadge = document.getElementById('player-custom-badge');
+      const btnReload = document.getElementById('btn-player-reload');
+      const btnPlayerFavorite = document.getElementById('btn-player-favorite');
+      const txtPlayerFavorite = document.getElementById('txt-player-favorite');
+      const svgHeartPlayer = document.getElementById('svg-heart-player');
+      const btnFullscreen = document.getElementById('btn-player-fullscreen');
+      const ratingSpan = document.getElementById('player-rating-val');
+
+      // Statistics indicators
+      const statSlotsCount = document.getElementById('stat-slots-count');
+      const statFavsCount = document.getElementById('stat-favs-count');
+      const statPlaysCount = document.getElementById('stat-plays-count');
+
+      // Side log panel selectors
+      const tabBtnInfo = document.getElementById('tab-btn-info');
+      const tabBtnControls = document.getElementById('tab-btn-controls');
+      const tabBtnTracker = document.getElementById('tab-btn-tracker');
+      const panelInfo = document.getElementById('panel-info');
+      const panelControls = document.getElementById('panel-controls');
+      const panelTracker = document.getElementById('panel-tracker');
+      const pGameTitle = document.getElementById('panel-game-title');
+      const pCategory = document.getElementById('player-category');
+      const pPlays = document.getElementById('player-plays');
+      const pDeveloper = document.getElementById('player-developer');
+      const pDesc = document.getElementById('player-desc');
+      const pControlsListBox = document.getElementById('controls-list-box');
+
+      // Modals list
+      const modalCloak = document.getElementById('modal-cloak');
+      const modalAddGame = document.getElementById('modal-add-game');
+
+      // Camo selectors
+      const presetsBox = document.getElementById('camo-presets-box');
+      const btnBindKey = document.getElementById('btn-bind-key');
+      const inputPanicUrl = document.getElementById('input-panic-url');
+      const btnResetPanicUrl = document.getElementById('btn-reset-panic-url');
+      const footPanicKey = document.getElementById('foot-panic-key');
+
+      // Embedded Form setup selectors
+      const formEmbedGame = document.getElementById('form-embed-game');
+      const ledgerForm = document.getElementById('ledger-form');
+
+      // SYSTEM INITIALIZATION
+      function init() {
+        setHourlyGreetings();
+        applyCamoEffects();
+        bindInputListeners();
+        renderCategoryTabs();
+        loadGamesCatalog();
+        updateGlobalStats();
+      }
+
+      // LOAD CATALOG MERGING LIST
+      function loadGamesCatalog() {
+        // Merge inline with customs
+        currentGames = [...DEFAULT_GAMES_CATALOG, ...customGames];
+        renderDirectoryGrid();
+      }
+
+      // RENDER CATEGORY BUTTON TABS
+      function renderCategoryTabs() {
+        const list = ['All', 'Arcade', 'Puzzle', 'Strategy', 'Classic', 'Creative', 'Favorites'];
+        tabsContainer.innerHTML = '';
+        
+        list.forEach(cat => {
+          const isActive = activeCategory.toLowerCase() === cat.toLowerCase();
+          const btn = document.createElement('button');
+          btn.className = `px-3.5 py-1.5 text-[10px] uppercase font-black rounded-none border whitespace-nowrap transition-all flex items-center gap-1.5 tracking-wider cursor-pointer ${
+            isActive
+              ? 'bg-sky-400 border-sky-400 text-[#020617] font-black'
+              : 'bg-[#0f172a] border-[#1e293b] text-slate-400 hover:text-white hover:border-slate-600'
+          }`;
+          
+          btn.onclick = () => {
+            activeCategory = cat;
+            renderCategoryTabs();
+            renderDirectoryGrid();
+          };
+
+          // Icons inline logic
+          let iconHtml = '';
+          if (cat === 'All') {
+            iconHtml = `<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>`;
+          } else if (cat === 'Favorites') {
+            iconHtml = `<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="${isActive ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.5" class="text-pink-400"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`;
+          } else {
+            iconHtml = `<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z"></path></svg>`;
+          }
+
+          btn.innerHTML = `${iconHtml} <span>${cat}</span>`;
+          tabsContainer.appendChild(btn);
+        });
+      }
+
+      // DYNAMIC GAME ICONS SELECTOR
+      function getIconSvg(iconName, colorClass = "text-slate-400") {
+        const svgHeader = `<svg class="${colorClass} transition-colors" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">`;
+        switch(iconName) {
+          case 'Grid3X3':
+            return `${svgHeader}<rect width="18" height="18" x="3" y="3" rx="2" /><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>`;
+          case 'Hexagon':
+            return `${svgHeader}<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>`;
+          case 'CircleDot':
+            return `${svgHeader}<circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="1" /></svg>`;
+          case 'Square':
+            return `${svgHeader}<rect width="18" height="18" x="3" y="3" rx="2" /></svg>`;
+          case 'Activity':
+            return `${svgHeader}<path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`;
+          case 'Sparkles':
+            return `${svgHeader}<path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z"/></svg>`;
+          case 'Bird':
+            return `${svgHeader}<path d="M16 4h4v4h-4z"/><path d="M12 8h4v4h-4z"/><circle cx="10" cy="12" r="8"/><path d="M10 8h2"/></svg>`;
+          case 'Bomb':
+            return `${svgHeader}<circle cx="11" cy="13" r="9"/><path d="m18.5 5.5 3-3M21 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z"/></svg>`;
+          case 'Layers':
+            return `${svgHeader}<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>`;
+          case 'Rocket':
+            return `${svgHeader}<path d="M4.5 16.5c-1.5 1.25-2.5 3.5-2.5 3.5s2.25-1 3.5-2.5M12 5c.5-1.5 2-2.5 2-2.5s-.35 2-.15 3.15C14.7 7.7 16.3 9.3 18 10.3c1.15.2 3.15-.15 3.15-.15s-1 1.5-2.5 2M9 15l3-3M9.5 9.5c.3.3.7.4 1.1.2l6.2-4.2c.4-.3.4-.8.1-1.1-.3-.3-.8-.3-1.1.1l-4.2 6.2c-.2.4-.1.8.2 1.1Z"/></svg>`;
+          default:
+            return `${svgHeader}<line x1="6" x2="10" y1="12" y2="12"></line><line x1="8" x2="8" y1="10" y2="14"></line><rect width="20" height="12" x="2" y="6" rx="3"></rect></svg>`;
+        }
+      }
+
+      // DIRECTORY GRID RENDERING LOGIC
+      function renderDirectoryGrid() {
+        // Apply filters
+        let filtered = currentGames.filter(game => {
+          // Category match
+          if (activeCategory === 'All') return true;
+          if (activeCategory === 'Favorites') return favorites.includes(game.id);
+          return game.category.toLowerCase() === activeCategory.toLowerCase();
+        });
+
+        if (searchQuery.trim() !== '') {
+          const term = searchQuery.toLowerCase();
+          filtered = filtered.filter(game => 
+            game.title.toLowerCase().includes(term) || 
+            game.description.toLowerCase().includes(term)
+          );
+        }
+
+        // Apply sorts
+        filtered.sort((a, b) => {
+          if (sortBy === 'plays') return b.plays - a.plays;
+          if (sortBy === 'rating') return b.rating - a.rating;
+          return a.title.localeCompare(b.title);
+        });
+
+        // Toggle reset button visibility
+        if (searchQuery) {
+          btnResetSearch.classList.remove('hidden');
+        } else {
+          btnResetSearch.classList.add('hidden');
+        }
+
+        // Render card nodes
+        gamesGrid.innerHTML = '';
+        if (filtered.length > 0) {
+          gamesGrid.classList.remove('hidden');
+          emptyDir.classList.add('hidden');
+
+          filtered.forEach(game => {
+            const isFav = favorites.includes(game.id);
+            const card = document.createElement('div');
+            card.className = "bg-[#0f172a] border border-[#1e293b] rounded-none overflow-hidden hover:border-[#38bdf8] transition-all flex flex-col h-full group relative scale-in";
+            
+            // Render beautiful structure
+            card.innerHTML = `
+              <!-- Visual Cover Graphic Placeholder -->
+              <div class="h-32 bg-gradient-to-br from-[#020617] via-[#0f172a] to-[#020617] flex items-center justify-center relative cursor-pointer transition-all overflow-hidden border-b border-[#1e293b] trigger-play">
+                <!-- Retro style style grid design lines -->
+                <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:12px_12px]"></div>
+                <!-- Line overlay spacer -->
+                <div class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-sky-400/0 via-sky-400/40 to-sky-400/0"></div>
+
+                <!-- Dynamic center icon -->
+                <div class="p-3 bg-[#020617]/80 rounded-none border border-[#1e293b] transition-all group-hover:text-sky-400 group-hover:border-sky-500/50 group-hover:scale-105">
+                  ${getIconSvg(game.icon, "text-slate-400 group-hover:text-sky-400 group-hover:stroke-sky-400")}
+                </div>
+
+                <!-- Hover quick play action -->
+                <div class="absolute inset-0 bg-slate-950/75 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all">
+                  <span class="px-4 py-1.5 bg-sky-400 text-[#020617] text-[10px] font-black uppercase tracking-widest rounded-none flex items-center gap-1.5 shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><rect width="20" height="12" x="2" y="6" rx="3"></rect></svg>
+                    <span>CORE.START</span>
+                  </span>
+                </div>
+
+                <!-- Top bar rating badge overlay -->
+                <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded-none bg-[#020617]/90 border border-[#1e293b] text-[9px] text-slate-300 font-mono flex items-center gap-1">
+                  <span class="text-sky-400">★</span> ${game.rating.toFixed(1)}
+                </span>
+
+                <!-- Category badge -->
+                <span class="absolute bottom-2 right-2 px-1.5 py-0.5 rounded-none bg-[#020617]/90 border border-[#1e293b] text-[8px] text-sky-400 uppercase tracking-widest font-mono font-bold">
+                  ${game.category}
+                </span>
+              </div>
+
+              <!-- Title and Description details -->
+              <div class="p-4 flex flex-grow flex-col bg-[#0f172a]">
+                <div class="flex items-start justify-between gap-1 mb-2">
+                  <h4 class="font-black text-white text-sm hover:text-sky-400 tracking-tight transition-all cursor-pointer truncate max-w-[170px] uppercase trigger-play">
+                    ${game.title}
+                  </h4>
+
+                  <div class="flex items-center gap-1.5 shrink-0">
+                    <!-- Trash bin if user added custom -->
+                    ${game.isCustom ? `
+                      <button type="button" class="p-1 rounded-none hover:bg-slate-800 text-slate-500 hover:text-rose-400 transition-all border border-[#1e293b] btn-delete-custom" title="Delete custom game port">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                      </button>
+                    ` : ''}
+
+                    <!-- Favorite toggle star -->
+                    <button type="button" class="p-1 rounded-none border transition-all btn-fav-card ${
+                      isFav 
+                        ? 'bg-pink-500/10 border-pink-505/20 text-pink-400 border-pink-500/30' 
+                        : 'bg-[#020617] border-[#1e293b] text-slate-500 hover:text-pink-400 hover:border-slate-700'
+                    }" title="Save Game Favorite">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.5"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed flex-grow mb-4 font-sans/95">
+                  ${game.description}
+                </p>
+
+                <div class="pt-3 border-t border-[#1e293b] flex items-center justify-between text-[9px] text-slate-500 font-mono uppercase tracking-wider">
+                  <span class="truncate max-w-[110px]">${game.developer || 'OPEN PORT'}</span>
+                  <span>${game.plays.toLocaleString()} PLAYS</span>
+                </div>
+              </div>
+            `;
+
+            // EVENT BINDINGS FOR INDIVIDUAL CARDS
+            const playTriggerElements = card.querySelectorAll('.trigger-play');
+            playTriggerElements.forEach(el => {
+              el.onclick = () => launchActiveGame(game);
+            });
+
+            const btnFav = card.querySelector('.btn-fav-card');
+            btnFav.onclick = (e) => {
+              e.stopPropagation();
+              toggleGameFavorite(game.id);
+            };
+
+            const btnDel = card.querySelector('.btn-delete-custom');
+            if (btnDel) {
+              btnDel.onclick = (e) => {
+                e.stopPropagation();
+                deleteCustomGamePort(game.id);
+              };
+            }
+
+            gamesGrid.appendChild(card);
+          });
+
+        } else {
+          gamesGrid.classList.add('hidden');
+          emptyDir.classList.remove('hidden');
+        }
+      }
+
+      // LAUNCH GAME VIEWPORT PORT
+      function launchActiveGame(game) {
+        selectedGame = game;
+
+        // Run play counters simulating addition
+        game.plays = game.plays + 1;
+        updateGlobalStats();
+
+        // Switch to viewport layers
+        viewDirectory.classList.add('hidden');
+        viewPlayer.classList.remove('hidden');
+
+        // Apply visual states to panels
+        playerTitleText.innerText = game.title.toUpperCase();
+        ratingSpan.innerText = game.rating.toFixed(1);
+        pGameTitle.innerText = game.title;
+        pCategory.innerText = game.category.toUpperCase();
+        pPlays.innerText = `${game.plays.toLocaleString()} SIM PORT PLAYS`;
+        pDeveloper.innerText = game.developer || "Open Developer Port";
+        pDesc.innerText = game.description;
+
+        if (game.isCustom) {
+          playerCustomBadge.classList.remove('hidden');
+        } else {
+          playerCustomBadge.classList.add('hidden');
+        }
+
+        // Run Controls listing
+        renderControlsTab();
+        renderPersonalScoresHistory();
+
+        // Toggle Favorites heart flag on player panel
+        updatePlayerFavoriteStar();
+
+        // Boot loader spinner and assign IFrame
+        iframeLoader.classList.remove('hidden');
+        iframePlay.src = '';
+        setTimeout(() => {
+          iframePlay.src = game.iframeUrl;
+        }, 100);
+
+        // Frame load triggers
+        iframePlay.onload = () => {
+          iframeLoader.classList.add('hidden');
+        };
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // RENDER CONTROLS MAPPED CHEAT LOGS
+      function renderControlsTab() {
+        pControlsListBox.innerHTML = '';
+        const controls = selectedGame.controls || [
+          "Left Click / Drag: Standard mouse pointer actions inside emulator window",
+          "Arrows Keys / WASD: Standard keyboard direction registers"
+        ];
+
+        controls.forEach(control => {
+          const row = document.createElement('div');
+          row.className = "p-2.5 bg-[#020617] border border-[#1e293b] text-xs font-mono text-slate-300 flex items-start gap-1.5";
+          row.innerHTML = `<span class="text-sky-400 font-bold mt-0.5">▪</span><span>${control}</span>`;
+          pControlsListBox.appendChild(row);
+        });
+      }
+
+      // FAVORITES SYSTEM CONTROLLER
+      function toggleGameFavorite(id) {
+        if (favorites.includes(id)) {
+          favorites = favorites.filter(favId => favId !== id);
+        } else {
+          favorites.push(id);
+        }
+        localStorage.setItem('games_favorites_list', JSON.stringify(favorites));
+
+        // Sync catalogs
+        renderCategoryTabs();
+        renderDirectoryGrid();
+        updateGlobalStats();
+
+        if (selectedGame && selectedGame.id === id) {
+          updatePlayerFavoriteStar();
+        }
+      }
+
+      function updatePlayerFavoriteStar() {
+        const isFav = favorites.includes(selectedGame.id);
+        if (isFav) {
+          btnPlayerFavorite.className = "p-1 px-2.5 bg-[#020617] border border-pink-500/30 text-pink-400 bg-pink-500/5 rounded-none transition-all flex items-center gap-1.5 text-[10px] font-mono uppercase font-bold select-none cursor-pointer";
+          txtPlayerFavorite.innerText = "SAVED";
+          svgHeartPlayer.setAttribute('fill', 'currentColor');
+          svgHeartPlayer.className = "text-pink-400";
+        } else {
+          btnPlayerFavorite.className = "p-1 px-2.5 bg-[#020617] border border-[#1e293b] text-slate-400 hover:text-pink-400 hover:border-pink-500/40 rounded-none transition-all flex items-center gap-1.5 text-[10px] font-mono uppercase font-bold select-none cursor-pointer";
+          txtPlayerFavorite.innerText = "FAVORITE";
+          svgHeartPlayer.setAttribute('fill', 'none');
+          svgHeartPlayer.className = "";
+        }
+      }
+
+      // ADD CUSTOM iframe Embed slots
+      function handleAddCustomGameEmbed(e) {
+        e.preventDefault();
+        const title = document.getElementById('embed-title').value.trim();
+        const url = document.getElementById('embed-url').value.trim();
+        const category = document.getElementById('embed-category').value;
+        const icon = document.getElementById('embed-icon').value;
+        const desc = document.getElementById('embed-desc').value.trim() || 'No active details configured for custom unblocked port.';
+
+        if (!title || !url) return;
+
+        const newId = 'custom-' + Date.now();
+        const newGame = {
+          id: newId,
+          title: title,
+          category: category,
+          description: desc,
+          controls: [
+            "Left Click: Interact inside frame coordinates",
+            "Arrows / WASD: Map Standard navigation keys"
+          ],
+          iframeUrl: url,
+          rating: 4.5,
+          plays: 0,
+          developer: "User Custom Node",
+          icon: icon,
+          isCustom: true
+        };
+
+        // Push to array database and local state
+        customGames.push(newGame);
+        localStorage.setItem('games_user_custom_list', JSON.stringify(customGames));
+
+        // Reload views
+        loadGamesCatalog();
+        toggleAddGameModal(false);
+
+        // Reset inputs
+        formEmbedGame.reset();
+      }
+
+      // DELETE CUSTOM added games
+      function deleteCustomGamePort(id) {
+        customGames = customGames.filter(game => game.id !== id);
+        localStorage.setItem('games_user_custom_list', JSON.stringify(customGames));
+
+        if (selectedGame && selectedGame.id === id) {
+          exitPlayerToLobby();
+        }
+
+        loadGamesCatalog();
+      }
+
+      // DIRECT SCORES ledger logger Tracker
+      function renderPersonalScoresHistory() {
+        const list = document.getElementById('scores-history-list');
+        list.innerHTML = '';
+        
+        // Load records for this specific game
+        const scoreKey = `scores_${selectedGame.id}`;
+        const records = JSON.parse(localStorage.getItem(scoreKey)) || [];
+
+        if (records.length === 0) {
+          list.innerHTML = `
+            <div class="py-8 text-center text-[10px] text-slate-500 border border-dashed border-[#1e293b] rounded-none flex flex-col items-center justify-center gap-1.5 uppercase font-mono select-none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-600"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+              <span>NO HIGH SCORES SAVED YET.</span>
+            </div>
+          `;
+          return;
+        }
+
+        records.forEach(rec => {
+          const entry = document.createElement('div');
+          entry.className = "bg-[#020617] border border-[#1e293b] p-2.5 flex items-start justify-between gap-2 group hover:border-slate-700 transition-all text-xs font-mono fade-in";
+          
+          entry.innerHTML = `
+            <div class="space-y-0.5">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="font-bold text-sky-400 text-xs">${rec.score}</span>
+                <span class="text-[8.5px] text-slate-500 tracking-wider uppercase">${rec.date}</span>
+              </div>
+              ${rec.notes ? `<p class="text-[10px] text-slate-400 leading-relaxed">${rec.notes}</p>` : ''}
+            </div>
+            <button type="button" class="p-1 text-slate-500 hover:text-rose-450 transition-all focus:opacity-100 btn-delete-score opacity-0 group-hover:opacity-100" title="Delete Score Record">
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/></svg>
+            </button>
+          `;
+
+          // Bind delete action
+          entry.querySelector('.btn-delete-score').onclick = () => {
+            deletePersonalScoreRecord(rec.id);
+          };
+
+          list.appendChild(entry);
+        });
+      }
+
+      function addPersonalScoreRecord(e) {
+        e.preventDefault();
+        const scoreVal = document.getElementById('input-score').value.trim();
+        const notesVal = document.getElementById('input-notes').value.trim();
+
+        if (!scoreVal || !selectedGame) return;
+
+        const scoreKey = `scores_${selectedGame.id}`;
+        const records = JSON.parse(localStorage.getItem(scoreKey)) || [];
+
+        const dateStr = new Date().toLocaleDateString(undefined, {
+          month: 'short',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+
+        const newRec = {
+          id: 'score-' + Date.now(),
+          score: scoreVal,
+          notes: notesVal,
+          date: dateStr
+        };
+
+        records.unshift(newRec);
+        localStorage.setItem(scoreKey, JSON.stringify(records));
+
+        // Clear input form
+        document.getElementById('input-score').value = '';
+        document.getElementById('input-notes').value = '';
+
+        renderPersonalScoresHistory();
+      }
+
+      function deletePersonalScoreRecord(recordId) {
+        const scoreKey = `scores_${selectedGame.id}`;
+        let records = JSON.parse(localStorage.getItem(scoreKey)) || [];
+        records = records.filter(r => r.id !== recordId);
+        localStorage.setItem(scoreKey, JSON.stringify(records));
+
+        renderPersonalScoresHistory();
+      }
+
+      // CAMOUFLAGE TAB ENGINE & PANIC HOTKEY CONTROL
+      function applyCamoEffects() {
+        const preset = CLOAK_PRESETS.find(p => p.id === activeCamoPresetId) || CLOAK_PRESETS[0];
+        
+        // Disguise site Document Title
+        if (activeCamoPresetId === 'normal') {
+          document.title = 'Unblocked Games Hub';
+        } else {
+          document.title = preset.title;
+        }
+
+        // Disguise Favre icon url link
+        const favicon = document.getElementById('app-favicon');
+        if (favicon) {
+          favicon.href = preset.iconUrl;
+        }
+
+        // Apply panic config values in side indicators HTML
+        footPanicKey.innerText = `[${panicKey.toUpperCase()}]`;
+
+        // Update Camo render options Modal state
+        renderCamoPresetsOptions();
+      }
+
+      function renderCamoPresetsOptions() {
+        presetsBox.innerHTML = '';
+        CLOAK_PRESETS.forEach(preset => {
+          const isSelected = activeCamoPresetId === preset.id;
+          const card = document.createElement('button');
+          card.type = "button";
+          card.className = `flex items-center justify-between p-3 rounded-none border text-left transition-all cursor-pointer ${
+            isSelected 
+              ? 'bg-sky-500/10 border-sky-400 text-white font-semibold' 
+              : 'bg-[#020617] border-[#1e293b] text-slate-400 hover:border-slate-700 hover:text-white'
+          }`;
+
+          card.onclick = () => {
+            activeCamoPresetId = preset.id;
+            localStorage.setItem('games_camo_preset', preset.id);
+            applyCamoEffects();
+          };
+
+          card.innerHTML = `
+            <div class="flex items-center gap-3">
+              <img src="${preset.iconUrl}" alt="${preset.name}" class="w-4 h-4 object-contain" onError="this.src='https://img.icons8.com/color/48/game-controller.png'" referrerPolicy="no-referrer" />
+              <div>
+                <span class="text-xs font-bold block">${preset.name}</span>
+                <span class="text-[10px] text-slate-500 font-mono tracking-wide max-w-[210px] truncate block">${preset.title}</span>
+              </div>
+            </div>
+            ${isSelected ? `
+              <div class="h-4 w-4 bg-sky-400 text-slate-950 flex items-center justify-center font-bold text-[9px] rotate-45">
+                <span class="-rotate-45">✓</span>
+              </div>
+            ` : ''}
+          `;
+
+          presetsBox.appendChild(card);
+        });
+
+        // Config bind key UI textual value
+        btnBindKey.innerText = isBindingKey ? 'WAITING...' : (panicKey === ' ' ? 'SPACE' : panicKey.toUpperCase());
+        inputPanicUrl.value = panicRedirect;
+      }
+
+      function assignPanicKey(key) {
+        panicKey = key;
+        localStorage.setItem('games_panic_key', key);
+        isBindingKey = false;
+        applyCamoEffects();
+      }
+
+      // PANIC EXIT ACTIONS
+      function triggerEmergencyPanicRedirect() {
+        window.location.href = panicRedirect;
+      }
+
+      // DYNAMIC HOURLY HEADLINE GREETING
+      function setHourlyGreetings() {
+        const hour = new Date().getHours();
+        let label = 'GOOD EVENING, PLAYER!';
+        if (hour < 12) {
+          label = 'GOOD MORNING, PLAYER!';
+        } else if (hour < 18) {
+          label = 'WELCOME BACK, PLAYER!';
+        }
+        greetingHeader.innerText = label;
+      }
+
+      // STATISTICS GRAPH AND COUNTER PANEL VALUES
+      function updateGlobalStats() {
+        statSlotsCount.innerText = currentGames.length;
+        statFavsCount.innerText = favorites.length;
+
+        // Count simulated plays
+        const sumPlays = currentGames.reduce((acc, game) => acc + game.plays, 0);
+        statPlaysCount.innerText = (sumPlays + favorites.length).toLocaleString();
+      }
+
+      // DIRECT ELEMENT NAVS TRANSITIONS
+      function exitPlayerToLobby() {
+        selectedGame = null;
+        iframePlay.src = ''; // Unload viewport
+
+        viewPlayer.classList.add('hidden');
+        viewDirectory.classList.remove('hidden');
+
+        // Restore default document disguise bounds
+        applyCamoEffects();
+        renderDirectoryGrid();
+      }
+
+      // MODALS MANIPULATION TOGGLERS
+      function toggleCloakModal(show) {
+        if (show) {
+          modalCloak.classList.remove('hidden');
+          isBindingKey = false;
+          renderCamoPresetsOptions();
+        } else {
+          modalCloak.classList.add('hidden');
+        }
+      }
+
+      function toggleAddGameModal(show) {
+        if (show) {
+          modalAddGame.classList.remove('hidden');
+        } else {
+          modalAddGame.classList.add('hidden');
+        }
+      }
+
+      // GENERAL EVENT BINDERS LOG
+      function bindInputListeners() {
+        
+        // Logo Back buttons
+        btnLogo.onclick = () => {
+          if (selectedGame) exitPlayerToLobby();
+        };
+
+        // Static buttons binders
+        btnAddGame.onclick = () => toggleAddGameModal(true);
+        btnCloak.onclick = () => toggleCloakModal(true);
+        btnPanicExit.onclick = triggerEmergencyPanicRedirect;
+
+        // Search inputs
+        inputSearch.oninput = (e) => {
+          searchQuery = e.target.value;
+          renderDirectoryGrid();
+        };
+        btnResetSearch.onclick = () => {
+          inputSearch.value = '';
+          searchQuery = '';
+          renderDirectoryGrid();
+        };
+        document.getElementById('btn-reset-filters').onclick = () => {
+          inputSearch.value = '';
+          searchQuery = '';
+          activeCategory = 'All';
+          renderCategoryTabs();
+          renderDirectoryGrid();
+        };
+
+        // Sort filter selections
+        selectSort.onchange = (e) => {
+          sortBy = e.target.value;
+          renderDirectoryGrid();
+        };
+
+        // Launcher exits buttons
+        btnPlayerBack.onclick = () => exitPlayerToLobby();
+        btnPanicPlayer.onclick = triggerEmergencyPanicRedirect;
+
+        // Force launch button if iframe is slow
+        btnForceFrame.onclick = () => {
+          iframeLoader.classList.add('hidden');
+        };
+
+        // Reload gameplay emulator
+        btnReload.onclick = () => {
+          if (selectedGame) launchActiveGame(selectedGame);
+        };
+
+        // Full screen trigger buttons
+        btnFullscreen.onclick = () => {
+          if (iframePlay.requestFullscreen) {
+            iframePlay.requestFullscreen();
+          } else if (iframePlay.webkitRequestFullscreen) { /* Safari */
+            iframePlay.webkitRequestFullscreen();
+          } else if (iframePlay.msRequestFullscreen) { /* IE11 */
+            iframePlay.msRequestFullscreen();
+          }
+        };
+
+        // Favorite bookmarks button inside player
+        btnPlayerFavorite.onclick = () => {
+          if (selectedGame) {
+            toggleGameFavorite(selectedGame.id);
+          }
+        };
+
+        // Theater switcher
+        btnPlayerTheater.onclick = () => {
+          const container = document.getElementById('player-grid-box');
+          const isTheater = container.style.maxWidth === '1200px';
+          
+          if (!isTheater) {
+            container.style.maxWidth = '1200px';
+            container.style.margin = '0 auto';
+            btnPlayerTheater.className = "flex items-center gap-1.5 px-3 py-1.5 text-xs bg-sky-505/10 border border-sky-400 text-sky-400 rounded-none transition-all font-mono uppercase font-bold tracking-wider";
+            txtTheater.innerText = "DISABLE THEATRE";
+          } else {
+            container.style.maxWidth = '';
+            container.style.margin = '';
+            btnPlayerTheater.className = "flex items-center gap-1.5 px-3 py-1.5 text-xs bg-[#0f172a] border border-[#1e293b] text-slate-400 hover:text-white rounded-none transition-all font-mono uppercase font-bold tracking-wider";
+            txtTheater.innerText = "THEATRE SCREEN";
+          }
+        };
+
+        // Sidebar detail tab switches
+        const deactivateTabs = () => {
+          tabBtnInfo.className = tabBtnInfo.className.replace('border-sky-400 text-white bg-sky-500/5', 'border-transparent text-slate-500 hover:text-slate-350');
+          tabBtnControls.className = tabBtnControls.className.replace('border-sky-400 text-white bg-sky-500/5', 'border-transparent text-slate-500 hover:text-slate-350');
+          tabBtnTracker.className = tabBtnTracker.className.replace('border-sky-400 text-white bg-sky-500/5', 'border-transparent text-slate-500 hover:text-slate-350');
+          
+          panelInfo.classList.add('hidden');
+          panelControls.classList.add('hidden');
+          panelTracker.classList.add('hidden');
+        };
+
+        tabBtnInfo.onclick = () => {
+          deactivateTabs();
+          tabBtnInfo.className = "flex-1 py-3 text-center text-[10px] uppercase tracking-widest font-black border-b-2 transition-all flex items-center justify-center gap-1.5 border-sky-400 text-white bg-sky-500/5";
+          panelInfo.classList.remove('hidden');
+        };
+
+        tabBtnControls.onclick = () => {
+          deactivateTabs();
+          tabBtnControls.className = "flex-1 py-3 text-center text-[10px] uppercase tracking-widest font-black border-b-2 transition-all flex items-center justify-center gap-1.5 border-sky-400 text-white bg-sky-500/5";
+          panelControls.classList.remove('hidden');
+        };
+
+        tabBtnTracker.onclick = () => {
+          deactivateTabs();
+          tabBtnTracker.className = "flex-1 py-3 text-center text-[10px] uppercase tracking-widest font-black border-b-2 transition-all flex items-center justify-center gap-1.5 border-sky-400 text-white bg-sky-500/5";
+          panelTracker.classList.remove('hidden');
+          renderPersonalScoresHistory();
+        };
+
+        // Custom Embed additions submit
+        formEmbedGame.onsubmit = handleAddCustomGameEmbed;
+
+        // High scores logging submit
+        ledgerForm.onsubmit = addPersonalScoreRecord;
+
+        // Custom key binder
+        btnBindKey.onclick = () => {
+          isBindingKey = true;
+          btnBindKey.innerText = 'PRESS ANY KEY...';
+          btnBindKey.className = "py-1.5 px-3 rounded-none text-xs font-mono font-black transition-all text-center bg-amber-500/20 text-amber-400 border border-amber-500/40 animate-pulse";
+        };
+
+        // Live reset URL options
+        btnResetPanicUrl.onclick = () => {
+          panicRedirect = 'https://classroom.google.com';
+          localStorage.setItem('games_panic_redirect', 'https://classroom.google.com');
+          inputPanicUrl.value = 'https://classroom.google.com';
+          applyCamoEffects();
+        };
+
+        inputPanicUrl.oninput = (e) => {
+          const val = e.target.value.trim() || 'https://classroom.google.com';
+          panicRedirect = val;
+          localStorage.setItem('games_panic_redirect', val);
+        };
+
+        // Keyboard Panic binders
+        window.addEventListener('keydown', (e) => {
+          // Ignore if input focused
+          const activeEl = document.activeElement;
+          if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable)) {
+            // But if we are registering a key bond!
+            if (isBindingKey) {
+              e.preventDefault();
+              assignPanicKey(e.key);
+            }
+            return;
+          }
+
+          if (isBindingKey) {
+            e.preventDefault();
+            assignPanicKey(e.key);
+            return;
+          }
+
+          if (e.key === panicKey) {
+            triggerEmergencyPanicRedirect();
+          }
+        });
+      }
+
+      // EXECUTE ENGINE
+      window.onload = init;
+    </script>
   </body>
 </html>
-
