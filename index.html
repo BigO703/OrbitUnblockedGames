@@ -368,6 +368,13 @@
                     </span>
                   </div>
 
+                  <!-- Banner Thumbnail Graphic Cover -->
+                  <div id="player-banner-container" class="h-28 w-full bg-[#020617] border border-[#1e293b] relative overflow-hidden hidden">
+                    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:10px_10px] z-0"></div>
+                    <img id="player-banner-img" src="" alt="Game Banner" class="w-full h-full object-cover relative z-10 opacity-0 transition-opacity duration-300" onload="this.classList.remove('opacity-0');" onerror="this.parentElement.classList.add('hidden');" referrerPolicy="no-referrer" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/20 to-transparent z-20"></div>
+                  </div>
+
                   <h3 id="panel-game-title" class="text-md font-black text-white uppercase block">
                     GAME TITLE
                   </h3>
@@ -520,40 +527,57 @@
               <p class="text-[10px] text-slate-400 leading-relaxed font-sans uppercase font-medium">To visit any site unblocked (e.g. youtube.com, discord.com), enter the address directly inside the <strong>Xylora Search Bar</strong> in the screen below!</p>
             </div>
           </div>
-          <button type="button" onclick="launchProxyLink('https://xylora.expertdiagnoza.ro/')" class="px-3 py-1.5 bg-[#020617] hover:bg-slate-900 border border-[#1e293b] text-[10px] font-mono font-bold uppercase tracking-wider text-sky-400 hover:text-sky-350 cursor-pointer transition-all shrink-0">
+          <button type="button" onclick="launchProxyLink(window.getActiveProxyHostUrl())" class="px-3 py-1.5 bg-[#020617] hover:bg-slate-900 border border-[#1e293b] text-[10px] font-mono font-bold uppercase tracking-wider text-sky-400 hover:text-sky-350 cursor-pointer transition-all shrink-0">
             RESET PORTAL
           </button>
         </div>
 
         <!-- Setting Panel Dropdown Card (Toggled via JS) -->
         <div id="proxy-settings-card" class="bg-[#0f172a] border border-[#1e293b] p-5 space-y-5 hidden fade-in select-none">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Search Engine Column -->
             <div class="space-y-3">
               <h4 class="text-xs font-black uppercase text-white tracking-widest font-mono flex items-center gap-2">
-                <span class="w-1.5 h-1.5 bg-sky-400 rotate-45"></span> Private Search Engine
+                <span class="w-1.5 h-1.5 bg-sky-400 rotate-45"></span> Search Engine
               </h4>
-              <p class="text-[11px] text-slate-500 uppercase tracking-widest font-mono">Select raw query router template</p>
+              <p class="text-[11px] text-slate-500 uppercase tracking-widest font-mono font-bold">Query Router</p>
               
-              <div id="proxy-engine-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <div id="proxy-engine-grid" class="grid grid-cols-2 gap-2">
                 <!-- Google, DuckDuckGo, Bing, Yahoo, Brave, Searx populated dynamically -->
               </div>
 
               <div class="space-y-1 pt-1.5">
                 <label class="text-[9px] text-slate-500 uppercase font-black font-mono">Custom template Override (%s = query)</label>
-                <input id="input-proxy-engine-custom" type="text" placeholder="https://mysearch.com/search?q=%s" class="w-full bg-[#020617] border border-[#1e293b] rounded-none px-3 py-1.5 text-xs text-white placeholder-slate-700 focus:outline-none focus:border-sky-500 font-mono text-xs" />
+                <input id="input-proxy-engine-custom" type="text" placeholder="https://mysearch.com/search?q=%s" class="w-full bg-[#020617] border border-[#1e293b] rounded-none px-3 py-1.5 text-xs text-white placeholder-slate-700 focus:outline-none focus:border-sky-505 font-mono text-xs" />
               </div>
             </div>
 
             <!-- Camou Theme Column -->
             <div class="space-y-3">
               <h4 class="text-xs font-black uppercase text-white tracking-widest font-mono flex items-center gap-2">
-                <span class="w-1.5 h-1.5 bg-sky-400 rotate-45"></span> CanLite Color Palette Theme
+                <span class="w-1.5 h-1.5 bg-sky-400 rotate-45"></span> Frame Theme Color
               </h4>
-              <p class="text-[11px] text-slate-500 uppercase tracking-widest font-mono font-bold">Atmospheric Preset Skins</p>
+              <p class="text-[11px] text-slate-500 uppercase tracking-widest font-mono font-bold">CanLite Skin</p>
 
-              <div id="proxy-theme-swatches" class="grid grid-cols-3 sm:grid-cols-4 gap-2">
+              <div id="proxy-theme-swatches" class="grid grid-cols-3 gap-2">
                 <!-- Color theme select buttons populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Proxy Mirror Server Column -->
+            <div class="space-y-3">
+              <h4 class="text-xs font-black uppercase text-white tracking-widest font-mono flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-sky-400 rotate-45"></span> Proxy Node Host
+              </h4>
+              <p class="text-[11px] text-slate-500 uppercase tracking-widest font-mono font-bold">Active Unblock Mirror</p>
+
+              <div id="proxy-host-grid" class="grid grid-cols-2 gap-2">
+                <!-- Color theme select buttons populated dynamically -->
+              </div>
+
+              <div class="space-y-1 pt-1.5">
+                <label class="text-[9px] text-slate-500 uppercase font-black font-mono">Custom Ultraviolet Host Proxy</label>
+                <input id="input-proxy-host-custom" type="text" placeholder="https://myproxy.com/" class="w-full bg-[#020617] border border-[#1e293b] rounded-none px-3 py-1.5 text-[11px] text-white placeholder-slate-700 focus:outline-none focus:border-sky-505 font-mono" />
               </div>
             </div>
           </div>
@@ -588,7 +612,7 @@
                 </button>
 
                 <!-- 2. Movies / Play -->
-                <button type="button" onclick="launchProxyLink('https://xylora.expertdiagnoza.ro/')" class="flex flex-col items-center justify-center aspect-square rounded-2xl bg-gradient-to-br from-indigo-950 to-[#020617] border border-slate-800 hover:border-purple-400/40 p-3 group transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 cursor-pointer">
+                <button type="button" onclick="launchProxyLink(window.getActiveProxyHostUrl())" class="flex flex-col items-center justify-center aspect-square rounded-2xl bg-gradient-to-br from-indigo-950 to-[#020617] border border-slate-800 hover:border-purple-400/40 p-3 group transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 cursor-pointer">
                   <div class="h-10 w-10 rounded-xl bg-purple-500/10 flex items-center justify-center mb-1 group-hover:bg-purple-500/20 text-purple-400">
                     <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z"/>
@@ -665,7 +689,7 @@
 
               <!-- Privacy Policy text link -->
               <div>
-                <button type="button" onclick="launchProxyLink('https://xylora.expertdiagnoza.ro/')" class="text-[10px] text-sky-500/70 hover:text-sky-450 font-bold tracking-widest font-mono uppercase cursor-pointer transition-all">
+                <button type="button" onclick="launchProxyLink(window.getActiveProxyHostUrl())" class="text-[10px] text-sky-500/70 hover:text-sky-450 font-bold tracking-widest font-mono uppercase cursor-pointer transition-all">
                   privacy policy
                 </button>
               </div>
@@ -863,6 +887,12 @@
           </div>
 
           <div class="space-y-1">
+            <label class="text-[10px] text-slate-450 text-slate-400 font-bold uppercase tracking-wider block">Thumbnail Image URL (Optional)</label>
+            <input id="embed-thumbnail" type="url" placeholder="https://example.com/logo.png" class="w-full bg-[#020617] border border-[#1e293b] px-3.5 py-2 text-xs text-white placeholder-slate-700 focus:outline-none focus:border-sky-500" />
+            <span class="text-[9px] text-slate-500 leading-normal block">Provide a valid image link (PNG, JPG, SVG) to show a custom block cover art on the lobby cards.</span>
+          </div>
+
+          <div class="space-y-1">
             <label class="text-[10px] text-slate-450 text-slate-400 font-bold uppercase tracking-wider block">Description / Notes</label>
             <textarea id="embed-desc" rows="2" placeholder="Describe controls or details about this custom play node..." class="w-full bg-[#020617] border border-[#1e293b] px-3.5 py-2 text-xs text-white placeholder-slate-700 focus:outline-none focus:border-sky-500 font-sans"></textarea>
           </div>
@@ -892,7 +922,8 @@
           "rating": 4.8,
           "plays": 24890,
           "developer": "Gabriele Cirulli",
-          "icon": "Grid3X3"
+          "icon": "Grid3X3",
+          "thumbnailUrl": "https://play-lh.googleusercontent.com/9C89Hovz84GOn6f-RTI1CgJbA2P9WThL57aOk9Nn_b0Y0O=w400"
         },
         {
           "id": "hextris",
@@ -907,7 +938,8 @@
           "rating": 4.6,
           "plays": 15420,
           "developer": "Hextris Team",
-          "icon": "Hexagon"
+          "icon": "Hexagon",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=400&auto=format&fit=crop"
         },
         {
           "id": "google-pacman",
@@ -922,7 +954,8 @@
           "rating": 4.9,
           "plays": 48310,
           "developer": "Google / Bandai Namco",
-          "icon": "CircleDot"
+          "icon": "CircleDot",
+          "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Pac-Man_Style.svg/400px-Pac-Man_Style.svg.png"
         },
         {
           "id": "tetris",
@@ -940,7 +973,8 @@
           "rating": 4.9,
           "plays": 39512,
           "developer": "Chvin",
-          "icon": "Square"
+          "icon": "Square",
+          "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Tetris_Official_Logo_since_2019.svg/400px-Tetris_Official_Logo_since_2019.svg.png"
         },
         {
           "id": "chrome-dino",
@@ -955,7 +989,8 @@
           "rating": 4.4,
           "plays": 19430,
           "developer": "Google Chromium",
-          "icon": "Activity"
+          "icon": "Activity",
+          "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Google_Chrome_T-Rex_Dinosaur_Icon.svg/400px-Google_Chrome_T-Rex_Dinosaur_Icon.svg.png"
         },
         {
           "id": "sandspiel",
@@ -971,7 +1006,8 @@
           "rating": 4.9,
           "plays": 28410,
           "developer": "Max Bittker",
-          "icon": "Sparkles"
+          "icon": "Sparkles",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=400&auto=format&fit=crop"
         },
         {
           "id": "flappy-bird",
@@ -986,7 +1022,8 @@
           "rating": 4.2,
           "plays": 12900,
           "developer": "Nebez",
-          "icon": "Bird"
+          "icon": "Bird",
+          "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/en/0/0a/Flappy_Bird_icon.png"
         },
         {
           "id": "minesweeper",
@@ -1002,7 +1039,8 @@
           "rating": 4.5,
           "plays": 8410,
           "developer": "1000101 GitHub",
-          "icon": "Bomb"
+          "icon": "Bomb",
+          "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Minesweeper_Icon.svg/400px-Minesweeper_Icon.svg.png"
         },
         {
           "id": "tower-game",
@@ -1017,7 +1055,8 @@
           "rating": 4.3,
           "plays": 9780,
           "developer": "Clunyet",
-          "icon": "Layers"
+          "icon": "Layers",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1611078489935-0cb964de46d6?q=80&w=400&auto=format&fit=crop"
         },
         {
           "id": "asteroids",
@@ -1034,7 +1073,89 @@
           "rating": 4.7,
           "plays": 13110,
           "developer": "Diana Adrianas",
-          "icon": "Rocket"
+          "icon": "Rocket",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?q=80&w=400&auto=format&fit=crop"
+        },
+        {
+          "id": "bitlife",
+          "title": "BitLife",
+          "category": "Creative",
+          "description": "Engage with BitLife, a text-based life simulator allowing you to live whichever life you construct – with absolute decision-freedom.",
+          "controls": [
+            "Mouse Click: Navigate through custom dialog prompts and options"
+          ],
+          "iframeUrl": "https://theunblock3dlabs.github.io/sourced/play/bitlife/",
+          "rating": 4.8,
+          "plays": 22150,
+          "developer": "Candywriter",
+          "icon": "Gamepad2",
+          "thumbnailUrl": "https://play-lh.googleusercontent.com/7gKx66SMyPey9dZ9Gf3p7P3_zS9zL30r9C6Z6vY_Gf-P0yA380yzE2=w400"
+        },
+        {
+          "id": "minecraft",
+          "title": "Minecraft",
+          "category": "Creative",
+          "description": "Explore infinite blocky worlds and build everything from the simplest of homes to the grandest of castles in creative or survival mode.",
+          "controls": [
+            "W/A/S/D or Arrow Keys: Move character around",
+            "Left Click: Interact, destroy blocks or attack",
+            "Right Click: Place blocks or use items",
+            "Spacebar: Jump, double-tap to fly"
+          ],
+          "iframeUrl": "https://theunblock3dlabs.github.io/sourced/play/minecraft/",
+          "rating": 4.9,
+          "plays": 48210,
+          "developer": "Mojang",
+          "icon": "Layers",
+          "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover_art.jpg"
+        },
+        {
+          "id": "crossyroad",
+          "title": "Crossy Road",
+          "category": "Arcade",
+          "description": "Guide your low-poly animal characters across endless bustling highways, treacherous rivers, and rapid train tracks.",
+          "controls": [
+            "W/A/S/D or Arrow Keys: Hop forward, backward, or sideward",
+            "Spacebar: Alternate action key"
+          ],
+          "iframeUrl": "https://theunblock3dlabs.github.io/sourced/play/crossyroad/",
+          "rating": 4.6,
+          "plays": 18270,
+          "developer": "Hipster Whale",
+          "icon": "Bird",
+          "thumbnailUrl": "https://play-lh.googleusercontent.com/0vB_l_S0eREd60fI4V_6Z70v9qX4_Xyo-O99pS2XQf0T-1lC1C8bE_HnN9uPz_M9qA=w400"
+        },
+        {
+          "id": "temple-run-2",
+          "title": "Temple Run 2",
+          "category": "Arcade",
+          "description": "Sprint, slide, leap, and turn while escaping from dangerous demonic monkeys in an endless and highly challenging temple ruins escape.",
+          "controls": [
+            "Arrow Keys or A/D: Dodge obstacles, jump over gaps, and slide under traps",
+            "Spacebar: Use active power-up"
+          ],
+          "iframeUrl": "https://theunblock3dlabs.github.io/sourced/play/temple-run-2/",
+          "rating": 4.7,
+          "plays": 20490,
+          "developer": "Imangi Studios",
+          "icon": "Rocket",
+          "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Temple_Run_2_logo.png/400px-Temple_Run_2_logo.png"
+        },
+        {
+          "id": "slope",
+          "title": "Slope",
+          "category": "Arcade",
+          "description": "Drive a rolling ball down a steep, randomized neon course filled with narrow pathways, sudden drops, and red dead-zones at ever-increasing speeds.",
+          "controls": [
+            "Left Arrow / A / Left Click drag: Steer ball left",
+            "Right Arrow / D / Right Click drag: Steer ball right"
+          ],
+          "iframeUrl": "https://gavan228.github.io/gaming/slope/index.html",
+          "rating": 4.9,
+          "plays": 54200,
+          "developer": "Y8 Games",
+          "icon": "Activity",
+          "thumbnailUrl": "https://play-lh.googleusercontent.com/6-sc_8Sbe-x7Z6990C5Cq6S59U_v7YpX2p_n91S5S=w400"
         }
       ];
 
@@ -1102,12 +1223,37 @@
         { id: 'night', name: 'Midnight', bg: '#020617', panel: '#0f172a', border: '#1e293b', accent: '#38bdf8', text: '#f1f5f9' },
       ];
 
+      // PROXY SERVERS LIST
+      const PROXY_SERVERS = [
+        { id: 'xylora-primary', name: 'Xylora Main', url: 'https://xylora.expertdiagnoza.ro/' },
+        { id: 'uv-fast-1', name: 'UV Cloud', url: 'https://uv.student-portal.org/' },
+        { id: 'uv-fast-2', name: 'UV Clever', url: 'https://clever.asg.edu.co/' },
+        { id: 'custom', name: '[Custom Mirror]', url: '' }
+      ];
+
       // Retrieve Proxy Preferences
       let activeProxyEngineId = localStorage.getItem('games_proxy_engine_id') || 'ddg';
       let customProxyEngineTemplate = localStorage.getItem('games_proxy_engine_custom') || '';
       let activeProxyThemeId = localStorage.getItem('games_proxy_theme_id') || 'night';
+      let activeProxyHostId = localStorage.getItem('games_proxy_host_id') || 'xylora-primary';
+      let customProxyHostUrl = localStorage.getItem('games_proxy_host_custom') || '';
       let proxyHistory = [];
       let proxyHistoryIndex = -1;
+
+      function getActiveProxyHostUrl() {
+        let url = 'https://xylora.expertdiagnoza.ro/';
+        if (activeProxyHostId === 'custom') {
+          url = customProxyHostUrl.trim() || 'https://xylora.expertdiagnoza.ro/';
+        } else {
+          const found = PROXY_SERVERS.find(s => s.id === activeProxyHostId);
+          if (found) url = found.url;
+        }
+        if (!url.endsWith('/')) {
+          url += '/';
+        }
+        return url;
+      }
+      window.getActiveProxyHostUrl = getActiveProxyHostUrl;
 
       // Persistence Storage states
       let favorites = JSON.parse(localStorage.getItem('games_favorites_list')) || [];
@@ -1388,12 +1534,53 @@
       function setupProxyPreferences() {
         renderProxyEnginesList();
         renderProxyThemesList();
+        renderProxyHostsList();
         applyProxyTheme(activeProxyThemeId);
         
         // Populate indicator texts
         const activeEng = PROXY_SEARCH_ENGINES.find(e => e.id === activeProxyEngineId) || PROXY_SEARCH_ENGINES[1];
         txtActiveEngine.innerText = activeEng.name;
         inputProxyEngineCustom.value = customProxyEngineTemplate;
+
+        // Custom proxy host inputs prefill and event binding
+        const inputProxyHostCustom = document.getElementById('input-proxy-host-custom');
+        if (inputProxyHostCustom) {
+          inputProxyHostCustom.value = customProxyHostUrl;
+          inputProxyHostCustom.oninput = (e) => {
+            customProxyHostUrl = e.target.value.trim();
+            localStorage.setItem('games_proxy_host_custom', customProxyHostUrl);
+          };
+        }
+      }
+
+      function renderProxyHostsList() {
+        const proxyHostGrid = document.getElementById('proxy-host-grid');
+        if (!proxyHostGrid) return;
+        proxyHostGrid.innerHTML = '';
+        PROXY_SERVERS.forEach(server => {
+          const isActive = activeProxyHostId === server.id;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `p-2 text-[10px] uppercase font-bold tracking-wider rounded-none border text-center transition-all cursor-pointer ${
+            isActive
+              ? 'bg-emerald-500 border-emerald-500 text-[#020617] font-black'
+              : 'bg-[#020617] border-[#1e293b] text-slate-400 hover:text-white hover:border-slate-600'
+          }`;
+          btn.innerText = server.name;
+          btn.onclick = () => {
+            activeProxyHostId = server.id;
+            localStorage.setItem('games_proxy_host_id', server.id);
+            renderProxyHostsList();
+
+            // Instantly transition and refresh proxy with the high-speed host if open
+            if (!viewProxy.classList.contains('hidden')) {
+              const defaultUrl = getActiveProxyHostUrl();
+              iframeProxy.src = defaultUrl;
+              inputProxyAddress.value = defaultUrl;
+            }
+          };
+          proxyHostGrid.appendChild(btn);
+        });
       }
 
       function renderProxyEnginesList() {
@@ -1483,24 +1670,95 @@
         });
       }
 
+      const xor = {
+        encode(str) {
+          if (!str) return str;
+          return encodeURIComponent(
+            str
+              .split('')
+              .map((char, i) =>
+                i % 2 ? String.fromCharCode(char.charCodeAt(0) ^ 2) : char
+              )
+              .join('')
+          );
+        },
+        decode(str) {
+          if (!str) return str;
+          const [input, ...search] = str.split('?');
+          return (
+            decodeURIComponent(input)
+              .split('')
+              .map((char, i) =>
+                i % 2 ? String.fromCharCode(char.charCodeAt(0) ^ 2) : char
+              )
+              .join('') + (search.length ? '?' + search.join('?') : '')
+          );
+        }
+      };
+
       function launchProxyEngine(input) {
         let targetUrl = input.trim();
         if (!targetUrl) return;
 
-        // Ensure we direct to xylora.expertdiagnoza.ro/ if not already loading it
-        const isXylora = targetUrl.includes('xylora.expertdiagnoza.ro');
-        let processedUrl = 'https://xylora.expertdiagnoza.ro/';
+        const hostUrl = getActiveProxyHostUrl();
+        let hostDomain = 'xylora.expertdiagnoza.ro';
+        try {
+          hostDomain = new URL(hostUrl).hostname;
+        } catch (e) {
+          console.error(e);
+        }
 
-        if (isXylora) {
+        const isProxyHost = targetUrl.includes(hostDomain) || targetUrl.includes('xylora.expertdiagnoza.ro');
+        let processedUrl = hostUrl;
+
+        if (isProxyHost) {
           processedUrl = targetUrl;
+          try {
+            if (targetUrl.includes('/service/')) {
+              const parts = targetUrl.split('/service/');
+              const encodedSegment = parts[1];
+              if (encodedSegment) {
+                inputProxyAddress.value = xor.decode(encodedSegment);
+              } else {
+                inputProxyAddress.value = targetUrl;
+              }
+            } else {
+              inputProxyAddress.value = targetUrl;
+            }
+          } catch (e) {
+            inputProxyAddress.value = targetUrl;
+          }
         } else {
-          inputProxyAddress.value = 'https://xylora.expertdiagnoza.ro/';
+          // It's a plain site search or raw url typed by the user!
+          let destinationUrl = targetUrl;
+          
+          const hasSpace = destinationUrl.includes(' ');
+          const hasDot = destinationUrl.includes('.');
+          const hasProtocol = destinationUrl.startsWith('http://') || destinationUrl.startsWith('https://');
+
+          if (!hasProtocol) {
+            if (!hasSpace && hasDot) {
+              destinationUrl = 'https://' + destinationUrl;
+            } else {
+              // Search using active search engine
+              const activeEng = PROXY_SEARCH_ENGINES.find(e => e.id === activeProxyEngineId) || PROXY_SEARCH_ENGINES[1];
+              let engineTemplate = activeEng.url;
+              if (customProxyEngineTemplate) {
+                engineTemplate = customProxyEngineTemplate;
+              }
+              destinationUrl = engineTemplate.replace('%s', encodeURIComponent(targetUrl));
+            }
+          }
+
+          // Build Ultraviolet service encoded URL
+          processedUrl = hostUrl + 'service/' + xor.encode(destinationUrl);
+          inputProxyAddress.value = destinationUrl;
         }
 
         // Display spinner & status info
         proxySpinner.classList.remove('hidden');
-        proxyEmptyPane.classList.add('hidden');
-        txtProxyActiveFrame.innerText = 'XYLORA PROXY ACTIVE';
+        if (proxyEmptyPane) proxyEmptyPane.classList.add('hidden');
+        txtProxyActiveFrame.innerText = 'PROXY ACTIVE';
 
         // Push to routing history logs
         if (proxyHistoryIndex === -1 || proxyHistory[proxyHistoryIndex] !== processedUrl) {
@@ -1517,8 +1775,7 @@
 
       // External helper trigger for suggestion items click
       function launchProxyLink(link) {
-        inputProxyAddress.value = 'Proxying suggestions inside Xylora...';
-        launchProxyEngine('https://xylora.expertdiagnoza.ro/');
+        launchProxyEngine(link);
       }
 
       // Dock Navigation Global triggers supporting dynamic widgets
@@ -1547,7 +1804,7 @@
         iframeProxy.src = '';
         txtProxyActiveFrame.innerText = 'NEW_TAB';
         inputProxyAddress.value = '';
-        proxyEmptyPane.classList.remove('hidden');
+        if (proxyEmptyPane) proxyEmptyPane.classList.add('hidden');
         proxySpinner.classList.add('hidden');
         proxySettingsCard.classList.add('hidden');
       }
@@ -1563,12 +1820,12 @@
         
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
-        // Show the beautiful COSMIC UNBLOCKED PORTAL lobby start screen initially !
-        // This ensures the 6 beautiful custom unblocked app shortcut buttons are completely visible and interactive on click.
-        iframeProxy.src = '';
-        txtProxyActiveFrame.innerText = 'COSMIC PORTAL';
-        inputProxyAddress.value = '';
-        proxyEmptyPane.classList.remove('hidden');
+        // Load the actual Xylora proxy search page directly inside the frame
+        const defaultUrl = getActiveProxyHostUrl();
+        iframeProxy.src = defaultUrl;
+        txtProxyActiveFrame.innerText = 'PROXY HOME';
+        inputProxyAddress.value = defaultUrl;
+        if (proxyEmptyPane) proxyEmptyPane.classList.add('hidden');
         proxySpinner.classList.add('hidden');
       }
 
@@ -1688,20 +1945,26 @@
             
             // Render beautiful structure
             card.innerHTML = `
-              <!-- Visual Cover Graphic Placeholder -->
+              <!-- Visual Cover Graphic Image / Placeholder -->
               <div class="h-32 bg-gradient-to-br from-[#020617] via-[#0f172a] to-[#020617] flex items-center justify-center relative cursor-pointer transition-all overflow-hidden border-b border-[#1e293b] trigger-play">
                 <!-- Retro style style grid design lines -->
-                <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:12px_12px]"></div>
+                <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:12px_12px] z-0"></div>
                 <!-- Line overlay spacer -->
-                <div class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-sky-400/0 via-sky-400/40 to-sky-400/0"></div>
+                <div class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-sky-400/0 via-sky-400/40 to-sky-400/0 z-20"></div>
+
+                <!-- Web Image Thumbnail if exists -->
+                ${game.thumbnailUrl ? `
+                  <img src="${game.thumbnailUrl}" alt="${game.title}" class="absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-500 opacity-0" onload="this.classList.remove('opacity-0');" onerror="this.style.opacity='0'; this.nextElementSibling.style.opacity='0';" referrerPolicy="no-referrer" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/50 to-[#020617]/80 z-10 group-hover:opacity-40 transition-opacity"></div>
+                ` : ''}
 
                 <!-- Dynamic center icon -->
-                <div class="p-3 bg-[#020617]/80 rounded-none border border-[#1e293b] transition-all group-hover:text-sky-400 group-hover:border-sky-500/50 group-hover:scale-105">
+                <div class="p-3 bg-[#020617]/80 rounded-none border border-[#1e293b] transition-all group-hover:text-sky-400 group-hover:border-sky-500/50 group-hover:scale-105 z-20">
                   ${getIconSvg(game.icon, "text-slate-400 group-hover:text-sky-400 group-hover:stroke-sky-400")}
                 </div>
 
                 <!-- Hover quick play action -->
-                <div class="absolute inset-0 bg-slate-950/75 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all">
+                <div class="absolute inset-0 bg-slate-950/80 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all z-30">
                   <span class="px-4 py-1.5 bg-sky-400 text-[#020617] text-[10px] font-black uppercase tracking-widest rounded-none flex items-center gap-1.5 shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><rect width="20" height="12" x="2" y="6" rx="3"></rect></svg>
                     <span>CORE.START</span>
@@ -1709,12 +1972,12 @@
                 </div>
 
                 <!-- Top bar rating badge overlay -->
-                <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded-none bg-[#020617]/90 border border-[#1e293b] text-[9px] text-slate-300 font-mono flex items-center gap-1">
+                <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded-none bg-[#020617]/90 border border-[#1e293b] text-[9px] text-slate-300 font-mono flex items-center gap-1 z-20">
                   <span class="text-sky-400">★</span> ${game.rating.toFixed(1)}
                 </span>
 
                 <!-- Category badge -->
-                <span class="absolute bottom-2 right-2 px-1.5 py-0.5 rounded-none bg-[#020617]/90 border border-[#1e293b] text-[8px] text-sky-400 uppercase tracking-widest font-mono font-bold">
+                <span class="absolute bottom-2 right-2 px-1.5 py-0.5 rounded-none bg-[#020617]/90 border border-[#1e293b] text-[8px] text-sky-400 uppercase tracking-widest font-mono font-bold z-20">
                   ${game.category}
                 </span>
               </div>
@@ -1806,6 +2069,19 @@
         pDeveloper.innerText = game.developer || "Open Developer Port";
         pDesc.innerText = game.description;
 
+        // Populate sidebar banner thumbnail if configured
+        const playerBannerContainer = document.getElementById('player-banner-container');
+        const playerBannerImg = document.getElementById('player-banner-img');
+        if (playerBannerContainer && playerBannerImg) {
+          if (game.thumbnailUrl) {
+            playerBannerImg.src = game.thumbnailUrl;
+            playerBannerContainer.classList.remove('hidden');
+          } else {
+            playerBannerContainer.classList.add('hidden');
+            playerBannerImg.src = '';
+          }
+        }
+
         if (game.isCustom) {
           playerCustomBadge.classList.remove('hidden');
         } else {
@@ -1892,6 +2168,8 @@
         const category = document.getElementById('embed-category').value;
         const icon = document.getElementById('embed-icon').value;
         const desc = document.getElementById('embed-desc').value.trim() || 'No active details configured for custom unblocked port.';
+        const thumbnailInput = document.getElementById('embed-thumbnail');
+        const thumbnailVal = thumbnailInput ? thumbnailInput.value.trim() : '';
 
         if (!title || !url) return;
 
@@ -1910,6 +2188,7 @@
           plays: 0,
           developer: "User Custom Node",
           icon: icon,
+          thumbnailUrl: thumbnailVal || undefined,
           isCustom: true
         };
 
@@ -2309,10 +2588,11 @@
         }
         if (btnProxyHomeToPane) {
           btnProxyHomeToPane.onclick = () => {
-            iframeProxy.src = '';
-            txtProxyActiveFrame.innerText = 'COSMIC PORTAL';
-            inputProxyAddress.value = '';
-            proxyEmptyPane.classList.remove('hidden');
+            const defaultUrl = getActiveProxyHostUrl();
+            iframeProxy.src = defaultUrl;
+            txtProxyActiveFrame.innerText = 'PROXY HOME';
+            inputProxyAddress.value = defaultUrl;
+            if (proxyEmptyPane) proxyEmptyPane.classList.add('hidden');
             proxySpinner.classList.add('hidden');
           };
         }
