@@ -1,0 +1,159 @@
+[
+  {
+    "id": "2048",
+    "title": "2048",
+    "category": "Puzzle",
+    "description": "Slide matching number tiles together to double their value. Can you combine your way up to the legendary 2048 tile in this timeless grid-addictive puzzle?",
+    "controls": [
+      "Arrow Keys / WASD: Slide tiles in all four directions",
+      "R: Restart the current session"
+    ],
+    "iframeUrl": "https://gabrielecirulli.github.io/2048/",
+    "rating": 4.8,
+    "plays": 24890,
+    "developer": "Gabriele Cirulli",
+    "icon": "Grid3X3"
+  },
+  {
+    "id": "hextris",
+    "title": "Hextris",
+    "category": "Arcade",
+    "description": "Rotate the central hexagon to match falling colored bars. Stack three or more blocks of the same color on a face to clear them and prevent the hex from filling up!",
+    "controls": [
+      "Left & Right Arrows / AD: Rotate hexagon counter-clockwise/clockwise",
+      "Down Arrow / S: Instant drop the block"
+    ],
+    "iframeUrl": "https://hextris.github.io/hextris/",
+    "rating": 4.6,
+    "plays": 15420,
+    "developer": "Hextris Team",
+    "icon": "Hexagon"
+  },
+  {
+    "id": "google-pacman",
+    "title": "Pac-Man Doodle",
+    "category": "Classic",
+    "description": "The official 30th-anniversary interactive Google doodle of the beloved Pac-Man arcade. Escape the colorful ghosts Blinky, Pinky, Inky, and Clyde while eating dots!",
+    "controls": [
+      "Arrow Keys / WASD: Control Pac-Man's movement",
+      "Enter / Click: Start / Insert Coin"
+    ],
+    "iframeUrl": "https://macek.github.io/google_pacman/",
+    "rating": 4.9,
+    "plays": 48310,
+    "developer": "Google / Bandai Namco",
+    "icon": "CircleDot"
+  },
+  {
+    "id": "tetris",
+    "title": "React Tetris",
+    "category": "Classic",
+    "description": "A high-fidelity retro Tetris experience with clean neon graphics, keyboard inputs, sound controls, and precise tetronimo drop physics.",
+    "controls": [
+      "Left / Right Arrow: Move Tetronimo",
+      "Up Arrow / X: Rotate Clockwise",
+      "Z: Rotate Counter-Clockwise",
+      "Spacebar: Hard Drop",
+      "Down Arrow: Soft Drop"
+    ],
+    "iframeUrl": "https://chvin.github.io/react-tetris/",
+    "rating": 4.9,
+    "plays": 39512,
+    "developer": "Chvin",
+    "icon": "Square"
+  },
+  {
+    "id": "chrome-dino",
+    "title": "T-Rex Dino Runner",
+    "category": "Arcade",
+    "description": "The classic Chrome offline Easter egg game. Control the running T-Rex as it dodges cacti and swooping pterodactyls in an endless desert scroll.",
+    "controls": [
+      "Spacebar / Up Arrow: Jump up over obstacles",
+      "Down Arrow: Duck under flying dinosaurs"
+    ],
+    "iframeUrl": "https://wayou.github.io/t-rex-runner/",
+    "rating": 4.4,
+    "plays": 19430,
+    "developer": "Google Chromium",
+    "icon": "Activity"
+  },
+  {
+    "id": "sandspiel",
+    "title": "Sandspiel",
+    "category": "Creative",
+    "description": "An interactive falling-sand physics playground. Mix materials like sand, water, fire, lava, plants, and wind, and watch real-time chemical reactions unfold.",
+    "controls": [
+      "Left Click / Drag: Draw selected element",
+      "Material Toolbar: Click to select material type",
+      "C: Clear canvas to start fresh"
+    ],
+    "iframeUrl": "https://sandspiel.club/",
+    "rating": 4.9,
+    "plays": 28410,
+    "developer": "Max Bittker",
+    "icon": "Sparkles"
+  },
+  {
+    "id": "flappy-bird",
+    "title": "Floppy Bird",
+    "category": "Arcade",
+    "description": "Flap your wings to fly through narrow pipe gaps! A popular unblocked open-source recreate of Flappy Bird that tests your rhythm, timing, and patience.",
+    "controls": [
+      "Spacebar / Click: Flap wings and gain altitude",
+      "Click to restart after a crash"
+    ],
+    "iframeUrl": "https://nebez.github.io/floppybird/",
+    "rating": 4.2,
+    "plays": 12900,
+    "developer": "Nebez",
+    "icon": "Bird"
+  },
+  {
+    "id": "minesweeper",
+    "title": "Classic Minesweeper",
+    "category": "Puzzle",
+    "description": "The retro Windows OS classic. Clear a gridded minefield without detonating a single bomb. Use numerical hints on tiles to locate hidden danger spots.",
+    "controls": [
+      "Left Click: Reveal grid tile contents",
+      "Right Click / Alt+Click: Place or remove a warning flag",
+      "Click Smile Emoji: Reset and load a new board"
+    ],
+    "iframeUrl": "https://1000101.github.io/minesweeper/",
+    "rating": 4.5,
+    "plays": 8410,
+    "developer": "1000101 GitHub",
+    "icon": "Bomb"
+  },
+  {
+    "id": "tower-game",
+    "title": "Tower Bridge Blaster",
+    "category": "Arcade",
+    "description": "Test your timing and precision by stacking heavy block layers perfectly on top of each other. Keep the tower stable as the stacks rise to the limit!",
+    "controls": [
+      "Left Click / Spacebar: Drop the sliding block onto the tower base",
+      "Ensure block falls directly on the layer below"
+    ],
+    "iframeUrl": "https://clunyet.github.io/tower_game/",
+    "rating": 4.3,
+    "plays": 9780,
+    "developer": "Clunyet",
+    "icon": "Layers"
+  },
+  {
+    "id": "asteroids",
+    "title": "Asteroids Vector",
+    "category": "Classic",
+    "description": "Command a small triangular ship in an outer space asteroid field. Fire lasers and destroy tumbling rocks before they crash into your thruster shield.",
+    "controls": [
+      "Left / Right Arrow: Rotate ship",
+      "Up Arrow / W: Accelerate forward with thruster booster",
+      "Spacebar: Fire laser blasters",
+      "Shift: Hyper-space teleport"
+    ],
+    "iframeUrl": "https://diana-adrianas.github.io/asteroids/",
+    "rating": 4.7,
+    "plays": 13110,
+    "developer": "Diana Adrianas",
+    "icon": "Rocket"
+  }
+]

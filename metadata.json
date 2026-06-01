@@ -1,0 +1,6 @@
+{
+  "name": "Unblocked Games Hub",
+  "description": "A clean, modern directory of classic school-unblocked games, complete with an immersive iframe player, custom favoriting, search filters, and page cloaking settings.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
