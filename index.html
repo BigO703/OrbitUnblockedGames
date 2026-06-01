@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Unblocked Games Hub</title>
+    <title>Orbit</title>
     <!-- Favicon ID to track camouflage presets dynamically -->
     <link id="app-favicon" rel="icon" href="https://img.icons8.com/color/48/game-controller.png" />
     
@@ -51,48 +51,92 @@
       }
     </style>
   </head>
-  <body class="min-h-screen bg-[#020617] text-[#f1f5f9] font-sans flex flex-col antialiased">
+  <body class="min-h-screen bg-[#02030e] text-[#f1f5f9] font-sans flex flex-col antialiased relative overflow-x-hidden">
+
+    <!-- Animated Cosmic Orbit Background Canvas -->
+    <canvas id="orbit-cosmic-bg" class="fixed inset-0 w-full h-full pointer-events-none z-[-1] opacity-75"></canvas>
 
     <!-- TOP NAVIGATION HEADER BAR -->
-    <header class="border-b border-[#1e293b] bg-[#020617]/95 sticky top-0 backdrop-blur-xl z-40">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
-        <div id="btn-logo" class="flex items-center gap-3 cursor-pointer hover:opacity-90 transition-all select-none">
-          <div class="p-2 bg-sky-450 bg-sky-400 text-[#020617] rounded-none rotate-45 flex items-center justify-center">
-            <!-- Gamepad SVG -->
-            <svg class="-rotate-45" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="6" x2="10" y1="12" y2="12"></line>
-              <line x1="8" x2="8" y1="10" y2="14"></line>
-              <line x1="15" x2="15.01" y1="13" y2="13"></line>
-              <line x1="18" x2="18.01" y1="11" y2="11"></line>
+    <header class="sticky top-0 z-50 bg-[#02030e]/95 border-b border-slate-800/80 backdrop-blur-xl">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between relative">
+        
+        <!-- Brand Logo on the left -->
+        <div id="btn-logo" class="flex items-center gap-3 cursor-pointer hover:opacity-95 transition-all select-none z-50">
+          <div class="p-2 bg-sky-400 text-[#020617] rounded-xl flex items-center justify-center shadow-lg shadow-sky-500/20">
+            <!-- Gamepad/Frog Hybrid SVG representation of the Orbit controller -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <rect width="20" height="12" x="2" y="6" rx="3"></rect>
+              <path d="M6 12h4m-2-2v4m7-1h.01m2.99-2h.01"></path>
             </svg>
           </div>
-          <div class="pl-1">
-            <span class="font-black text-sm tracking-widest text-white uppercase block">
-              UNBLOCKED<span class="text-sky-400 ml-1.5 px-2 py-0.5 bg-sky-500/10 border border-sky-500/20 font-black text-[9px]">HUB</span>
+          <div class="pl-0.5 hidden sm:block text-left">
+            <span class="font-extrabold text-sm tracking-widest text-white uppercase block leading-none">
+              ORBIT<span class="text-sky-400 pl-1 font-black text-[9.5px]">V4</span>
             </span>
-            <p class="text-[9px] text-slate-500 font-mono tracking-wider uppercase">SECURE SANDBOX EMULATION STATION</p>
+            <p class="text-[8px] text-slate-500 font-mono tracking-wider uppercase font-semibold mt-0.5">COSMIC DIRECTORY</p>
           </div>
         </div>
 
-        <!-- Header Actions panel -->
+        <!-- STYLISH FLOATING NAVIGATION CAPSULE (CENTERED IN DESKTOP, NEATLY FITTED ON MOBILE) -->
+        <div class="flex items-center bg-[#070913]/95 border border-slate-800 rounded-2xl px-3 py-1 gap-2.5 shadow-[0_4px_30px_rgba(0,0,0,0.8)] backdrop-blur-xl transition-all hover:border-slate-700/95">
+          
+          <!-- Green Frog Brand Indicator (Leftmost icon) -->
+          <div onclick="showLobbyFromDock()" class="pr-2 border-r border-slate-800/60 flex items-center gap-1.5 cursor-pointer group" title="Return to Core">
+            <div class="p-1 bg-green-500/10 border border-green-500/20 text-green-400 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110">
+              <!-- Precise cute Frog SVG outline -->
+              <svg class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z" />
+                <circle cx="9" cy="10" r="1.2" fill="currentColor" />
+                <circle cx="15" cy="10" r="1.2" fill="currentColor" />
+                <path d="M8.5 14.5c2.5 1.5 4.5 1.5 7 0" stroke-linecap="round" />
+              </svg>
+            </div>
+            <span class="text-[9px] font-bold text-green-400 hidden lg:inline tracking-wider uppercase">CORE</span>
+          </div>
+
+          <!-- Controller / Games Module Toggle -->
+          <button type="button" onclick="showLobbyFromDock()" class="p-1.5 sm:p-2 hover:bg-slate-800/60 rounded-xl text-slate-400 hover:text-white transition-all flex items-center gap-1.5 justify-center cursor-pointer text-xs" title="Games Directory">
+            <svg class="h-4.5 w-4.5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="12" x="2" y="6" rx="3"></rect>
+              <path d="M6 12h4m-2-2v4m7-1h.01m2.99-2h.01"></path>
+            </svg>
+            <span class="hidden md:inline font-mono tracking-wider text-[9.5px] uppercase">GAMES</span>
+          </button>
+
+          <!-- Web Proxy / Unblocker Toggle -->
+          <button id="btn-open-proxy" class="p-1.5 sm:p-2 hover:bg-slate-800/60 rounded-xl text-slate-400 hover:text-white transition-all flex items-center gap-1.5 justify-center cursor-pointer text-xs" title="Web Proxy Unblocker">
+            <svg class="h-4.5 w-4.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="7" height="7" x="3" y="3" rx="1"></rect>
+              <rect width="7" height="7" x="14" y="3" rx="1"></rect>
+              <rect width="7" height="7" x="14" y="14" rx="1"></rect>
+              <rect width="7" height="7" x="3" y="14" rx="1"></rect>
+            </svg>
+            <span class="hidden md:inline font-mono tracking-wider text-[9.5px] uppercase text-emerald-400">PROXY</span>
+          </button>
+
+          <!-- Cloaking preferences (Partnerships Handshake represented here) -->
+          <button id="btn-cloak" class="p-1.5 sm:p-2 hover:bg-slate-800/60 rounded-xl text-slate-400 hover:text-white transition-all flex items-center gap-1.5 justify-center cursor-pointer text-xs" title="Cloaking Disguise">
+            <svg class="h-4.5 w-4.5 text-pink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span class="hidden md:inline font-mono tracking-wider text-[9.5px] uppercase">CLOAK</span>
+          </button>
+
+          <!-- Add / Embed Module Toggle -->
+          <button id="btn-add-game" class="p-1.5 sm:p-2 hover:bg-slate-800/60 rounded-xl text-slate-400 hover:text-white transition-all flex items-center gap-1.5 justify-center cursor-pointer text-xs" title="Embed Custom Page">
+            <svg class="h-4.5 w-4.5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span class="hidden md:inline font-mono tracking-wider text-[9.5px] uppercase text-purple-400">EMBED</span>
+          </button>
+        </div>
+
+        <!-- Right Side Panic Trigger -->
         <div class="flex items-center gap-2">
-          <!-- Embed URL Action Button -->
-          <button id="btn-add-game" class="p-1.5 px-3 rounded-none bg-sky-400 hover:bg-sky-305 text-slate-950 font-black transition-all flex items-center gap-1.5 text-[10px] uppercase tracking-widest shadow-md active:scale-95">
-            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
-            <span class="hidden md:inline">Embed Game</span>
-          </button>
-
-          <!-- Tab Cloaker Toggle Button -->
-          <button id="btn-cloak" class="p-1.5 px-3 rounded-none bg-[#0f172a] border border-[#1e293b] hover:text-sky-400 hover:border-sky-500/50 hover:bg-slate-900 text-slate-400 transition-all flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-wider">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 9.7a1 1 0 0 1-.68 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 .76-.97l8-2a1 1 0 0 1 .48 0l8 2A1 1 0 0 1 20 6z"></path></svg>
-            <span class="hidden md:inline font-bold">Cloaker</span>
-          </button>
-
-          <!-- PANIC EMERGENCY TRIGGER -->
-          <button id="btn-panic-exit" class="py-1.5 px-3 bg-rose-600 hover:bg-rose-500 text-white font-black text-[10px] uppercase tracking-widest rounded-none flex items-center gap-1.5 transition-all shadow-md active:scale-95 cursor-pointer">
-            <span class="w-1.5 h-1.5 rounded-none bg-white animate-ping"></span>
-            <span class="hidden sm:inline">PANIC EXIT</span>
+          <button id="btn-panic-exit" class="py-1.5 px-3 bg-rose-600/10 border border-rose-500/25 hover:bg-rose-600 text-rose-450 text-rose-400 hover:text-white font-extrabold text-[9.5px] uppercase tracking-widest rounded-xl flex items-center gap-2 transition-all shadow-md active:scale-95 cursor-pointer">
+            <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping block"></span>
+            <span class="hidden sm:inline">PANIC</span>
           </button>
         </div>
       </div>
@@ -358,7 +402,7 @@
                     <span class="text-[9px] text-slate-500 font-black uppercase tracking-widest font-mono block">
                       GAMEPLAY KEYBOARD MAPPINGS
                     </span>
-                    <p class="text-xs text-slate-405 text-slate-400 font-sans">
+                    <p class="text-xs text-slate-400 font-sans">
                       Standard computer layouts map down to these commands:
                     </p>
                   </div>
@@ -368,7 +412,7 @@
                   </div>
 
                   <div class="bg-[#020617] p-3 border border-[#1e293b] flex items-center gap-2.5 text-[9.5px] text-slate-500 leading-tight uppercase font-mono tracking-wider mt-auto select-none">
-                    <span class="text-sky-405 text-sky-400">●</span>
+                    <span class="text-sky-400">●</span>
                     <span>Supports standard offline keyboard registers inside emulation frames.</span>
                   </div>
                 </div>
@@ -409,13 +453,257 @@
         </div>
       </div>
 
+      <!-- LAYER 3: INTEGRATED WEB PROXY STATION -->
+      <div id="view-proxy" class="hidden transition-all duration-300 space-y-4 fade-in">
+        <!-- Proxy Browser controls row -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-3 bg-[#0f172a] border border-[#1e293b] p-3 text-slate-400 text-xs">
+          <!-- Left side controls -->
+          <div class="flex items-center gap-2 w-full md:w-auto">
+            <button id="btn-proxy-back-lobby" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#020617] hover:bg-slate-900 border border-[#1e293b] text-xs text-slate-400 hover:text-white rounded-none transition-all uppercase font-mono font-bold tracking-wider cursor-pointer" title="Exit to Lobby">
+              <svg xmlns="http://www.w3.org/2050/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 19-7-7 7-7"/></svg>
+              <span>LOBBY</span>
+            </button>
+
+            <!-- Back to Portal Home Option -->
+            <button id="btn-proxy-home-to-pane" class="px-2.5 py-1.5 bg-[#020617] hover:bg-slate-900 border border-[#1e293b] text-slate-400 hover:text-white transition-all flex items-center justify-center cursor-pointer" title="Back to Cosmic Portal Apps">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            </button>
+
+            <!-- Navigation flow controls -->
+            <div class="flex items-center bg-[#020617] border border-[#1e293b]">
+              <button id="btn-proxy-nav-back" class="p-2 hover:bg-slate-800 text-slate-500 hover:text-white border-r border-[#1e293b] transition-all" title="Back">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              </button>
+              <button id="btn-proxy-nav-forward" class="p-2 hover:bg-slate-800 text-slate-500 hover:text-white border-r border-[#1e293b] transition-all" title="Forward">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+              <button id="btn-proxy-nav-reload" class="p-2 hover:bg-slate-800 text-slate-500 hover:text-white transition-all" title="Reload Frame">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic address input bar -->
+          <form id="form-proxy-address" class="relative grow w-full">
+            <span class="absolute left-3 top-2.5 text-sky-400 select-none font-mono">⚡</span>
+            <input id="input-proxy-address" type="text" placeholder="Search or type a URL (e.g. youtube.com, discord.com or play agar.io)..." class="w-full bg-[#020617] border border-[#1e293b] rounded-none pl-8 pr-16 py-2 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-sky-500 font-mono" />
+            <button type="submit" class="absolute right-1 top-1 px-2.5 py-1 bg-sky-400 hover:bg-sky-350 text-slate-950 text-[9px] font-black uppercase tracking-widest rounded-none transition-all cursor-pointer">
+              GO
+            </button>
+          </form>
+
+          <!-- Right side status & gears -->
+          <div class="flex items-center gap-2 w-full md:w-auto justify-end">
+            <!-- Active search engine descriptor badge -->
+            <div id="btn-proxy-engine-indicator" class="px-2.5 py-1.5 bg-[#020617] border border-[#1e293b] rounded-none text-[9px] font-mono uppercase tracking-wider text-slate-400 cursor-pointer hover:border-slate-600 hover:text-white">
+              ENGINE: <span id="txt-active-engine" class="text-sky-400 font-extrabold">DuckDuckGo</span>
+            </div>
+
+            <!-- Settings action gear -->
+            <button id="btn-proxy-settings" class="p-1.5 px-3 bg-[#020617] border border-[#1e293b] hover:border-sky-500 hover:text-sky-400 rounded-none transition-all flex items-center gap-1.5 text-[10px] font-mono uppercase font-bold cursor-pointer" title="Proxy Preferences">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </button>
+
+            <!-- Fullscreen -->
+            <button id="btn-proxy-fullscreen" class="p-1.5 px-3 bg-[#020617] border border-[#1e293b] hover:border-sky-550 hover:text-sky-400 rounded-none transition-all flex items-center gap-1.5 text-[10px] font-mono uppercase font-bold cursor-pointer" title="Proxy Window Fullscreen">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Fast Chromebook Proxy Helper Banner -->
+        <div class="bg-sky-500/10 border border-[#1e293b] p-3 text-slate-300 text-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 select-none">
+          <div class="flex items-start gap-2.5">
+            <span class="mt-0.5 px-1.5 py-0.5 bg-sky-500 text-slate-950 font-black text-[9px] uppercase tracking-wider font-mono animate-pulse shrink-0">ACTIVE HOST</span>
+            <div class="space-y-0.5">
+              <p class="text-xs font-black uppercase text-white tracking-wider font-mono">FROGIEONE CLOAKED WEB PROXY DIRECTORY</p>
+              <p class="text-[10px] text-slate-400 leading-relaxed font-sans uppercase font-medium">To visit any site unblocked (e.g. youtube.com, discord.com), enter the address directly inside the <strong>FrogieOne Search Bar</strong> in the screen below!</p>
+            </div>
+          </div>
+          <button type="button" onclick="launchProxyLink('https://frogieone.theworkpc.com/')" class="px-3 py-1.5 bg-[#020617] hover:bg-slate-900 border border-[#1e293b] text-[10px] font-mono font-bold uppercase tracking-wider text-sky-400 hover:text-sky-350 cursor-pointer transition-all shrink-0">
+            RESET PORTAL
+          </button>
+        </div>
+
+        <!-- Setting Panel Dropdown Card (Toggled via JS) -->
+        <div id="proxy-settings-card" class="bg-[#0f172a] border border-[#1e293b] p-5 space-y-5 hidden fade-in select-none">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Search Engine Column -->
+            <div class="space-y-3">
+              <h4 class="text-xs font-black uppercase text-white tracking-widest font-mono flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-sky-400 rotate-45"></span> Private Search Engine
+              </h4>
+              <p class="text-[11px] text-slate-500 uppercase tracking-widest font-mono">Select raw query router template</p>
+              
+              <div id="proxy-engine-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                <!-- Google, DuckDuckGo, Bing, Yahoo, Brave, Searx populated dynamically -->
+              </div>
+
+              <div class="space-y-1 pt-1.5">
+                <label class="text-[9px] text-slate-500 uppercase font-black font-mono">Custom template Override (%s = query)</label>
+                <input id="input-proxy-engine-custom" type="text" placeholder="https://mysearch.com/search?q=%s" class="w-full bg-[#020617] border border-[#1e293b] rounded-none px-3 py-1.5 text-xs text-white placeholder-slate-700 focus:outline-none focus:border-sky-500 font-mono text-xs" />
+              </div>
+            </div>
+
+            <!-- Camou Theme Column -->
+            <div class="space-y-3">
+              <h4 class="text-xs font-black uppercase text-white tracking-widest font-mono flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-sky-400 rotate-45"></span> CanLite Color Palette Theme
+              </h4>
+              <p class="text-[11px] text-slate-500 uppercase tracking-widest font-mono font-bold">Atmospheric Preset Skins</p>
+
+              <div id="proxy-theme-swatches" class="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                <!-- Color theme select buttons populated dynamically -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- IFrame/Empty Browser grid viewport box -->
+        <div id="proxy-viewport-box" class="aspect-video w-full bg-[#020617] rounded-none border border-[#1e293b] shadow-2xl flex flex-col overflow-hidden relative" style="min-height: 520px;">
+          
+          <!-- Empty View / New Tab placeholder -->
+          <div id="proxy-empty-pane" class="absolute inset-0 bg-[#02030e] flex flex-col items-center justify-center text-center p-6 z-10 overflow-y-auto">
+            <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#38bdf8_0.5px,transparent_0.5px)] [background-size:20px_20px] pointer-events-none"></div>
+            
+            <div class="max-w-xl w-full relative z-20 my-auto py-6">
+              <!-- Portal Title mimicking the layout -->
+              <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-widest uppercase mb-1 font-sans">
+                orbit v4
+              </h2>
+              <p class="text-[9.5px] uppercase text-emerald-400 font-mono tracking-widest mb-8 font-black">
+                COSMIC UNBLOCKED PORTAL
+              </p>
+
+              <!-- Rows of 6 beautiful rounded custom app buttons -->
+              <div class="grid grid-cols-3 sm:grid-cols-6 gap-4 mb-8 justify-center">
+                <!-- 1. Sound wave (Music / SoundCloud) -->
+                <button type="button" onclick="launchProxyLink('soundcloud.com')" class="flex flex-col items-center justify-center aspect-square rounded-2xl bg-gradient-to-br from-blue-900 to-[#020617] border border-slate-800 hover:border-sky-400/40 p-3 group transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 cursor-pointer">
+                  <div class="h-10 w-10 rounded-xl bg-sky-500/10 flex items-center justify-center mb-1 group-hover:bg-sky-500/20 text-sky-400">
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 3a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-4 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-12 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm16 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-12 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-4 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+                    </svg>
+                  </div>
+                  <span class="text-[9px] font-mono text-slate-400 uppercase tracking-wider group-hover:text-white mt-1">Audio</span>
+                </button>
+
+                <!-- 2. Movies / Play -->
+                <button type="button" onclick="launchProxyLink('https://frogieone.theworkpc.com/')" class="flex flex-col items-center justify-center aspect-square rounded-2xl bg-gradient-to-br from-indigo-950 to-[#020617] border border-slate-800 hover:border-purple-400/40 p-3 group transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 cursor-pointer">
+                  <div class="h-10 w-10 rounded-xl bg-purple-500/10 flex items-center justify-center mb-1 group-hover:bg-purple-500/20 text-purple-400">
+                    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                  <span class="text-[9px] font-mono text-slate-400 uppercase tracking-wider group-hover:text-white mt-1">Movies</span>
+                </button>
+
+                <!-- 3. TikTok -->
+                <button type="button" onclick="launchProxyLink('tiktok.com')" class="flex flex-col items-center justify-center aspect-square rounded-2xl bg-[#010101] border border-slate-800 hover:border-pink-400/40 p-3 group transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 cursor-pointer">
+                  <div class="h-10 w-10 rounded-xl bg-rose-500/10 flex items-center justify-center mb-1 group-hover:bg-rose-500/20 text-rose-450 text-red-400">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.5-4.09-1.33-.24-.17-.4-.38-.6-.57v6.62c.04 4.13-2.73 7.85-6.81 8.28-4.07.45-8.15-2.02-9.16-6.04C.68 13.9 2.22 9.29 6.2 8.16c1.17-.34 2.45-.31 3.61.12v4.14c-.66-.31-1.4-.41-2.12-.29-1.57.21-2.85 1.58-2.92 3.16-.14 1.89 1.34 3.59 3.23 3.69 2.06.17 3.91-1.39 4-3.46.06-2.28.02-4.57.02-6.85V.02h.53z"/>
+                    </svg>
+                  </div>
+                  <span class="text-[9px] font-mono text-slate-400 uppercase tracking-wider group-hover:text-white mt-1">TikTok</span>
+                </button>
+
+                <!-- 4. Twitch -->
+                <button type="button" onclick="launchProxyLink('twitch.tv')" class="flex flex-col items-center justify-center aspect-square rounded-2xl bg-[#18181b] border border-slate-800 hover:border-violet-400/40 p-3 group transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 cursor-pointer">
+                  <div class="h-10 w-10 rounded-xl bg-violet-650/10 flex items-center justify-center mb-1 text-violet-400 group-hover:bg-violet-500/20 font-sans">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
+                    </svg>
+                  </div>
+                  <span class="text-[9px] font-mono text-slate-400 uppercase tracking-wider group-hover:text-white mt-1">Twitch</span>
+                </button>
+
+                <!-- 5. YouTube -->
+                <button type="button" onclick="launchProxyLink('youtube.com')" class="flex flex-col items-center justify-center aspect-square rounded-2xl bg-[#280505] border border-slate-800 hover:border-red-400/50 p-3 group transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 cursor-pointer">
+                  <div class="h-10 w-10 rounded-xl bg-red-500/10 flex items-center justify-center mb-1 text-red-500 group-hover:bg-red-500/20">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.519 0-9.387.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.868.507 9.387.507 9.387.507s7.518 0 9.387-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                  </div>
+                  <span class="text-[9px] font-mono text-slate-400 uppercase tracking-wider group-hover:text-white mt-1">YouTube</span>
+                </button>
+
+                <!-- 6. Discord -->
+                <button type="button" onclick="launchProxyLink('discord.com')" class="flex flex-col items-center justify-center aspect-square rounded-2xl bg-[#0a1128] border border-slate-800 hover:border-sky-500/50 p-3 group transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 cursor-pointer">
+                  <div class="h-10 w-10 rounded-xl bg-indigo-500/10 flex items-center justify-center mb-1 text-indigo-400 group-hover:bg-indigo-500/20">
+                    <svg class="h-5.5 w-5.5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.873-.894a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.92 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01a10.15 10.15 0 0 0 .372.292a.075.075 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.894a.077.077 0 0 0-.041.107a14.314 14.314 0 0 0 1.226 1.99a.075.075 0 0 0 .084.03a19.831 19.831 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.156-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.156-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.156 2.418z"/>
+                    </svg>
+                  </div>
+                  <span class="text-[9px] font-mono text-slate-400 uppercase tracking-wider group-hover:text-white mt-1">Discord</span>
+                </button>
+              </div>
+
+              <!-- Compact Search Bar Pill-centered style -->
+              <div class="w-full max-w-md mx-auto mb-3.5 relative">
+                <!-- Inner helper proxy form wrapper -->
+                <input id="portal-search-input" type="text" placeholder="search anything..." onkeydown="if(event.key === 'Enter') { event.preventDefault(); launchProxyEngine(this.value); }" class="w-full bg-[#0a0f1d] border border-slate-800/80 rounded-full px-6 py-3.5 text-xs text-center text-white placeholder-slate-600 focus:outline-none focus:border-sky-505 shadow-xl font-sans" />
+              </div>
+
+              <!-- Select Region selector -->
+              <div class="inline-block relative mb-8 select-none">
+                <select id="portal-region-select" class="appearance-none bg-[#0a0f1d] border border-slate-800/60 rounded-full px-4 py-1.5 text-[10px] text-slate-500 font-bold focus:outline-none focus:border-sky-505 uppercase pr-7 cursor-pointer text-center font-mono">
+                  <option value="auto">select any region...</option>
+                  <option value="us">United States (Fast)</option>
+                  <option value="eu">Europe Node</option>
+                  <option value="la">Latin America Hub</option>
+                  <option value="as">Asia-Pacific Proxy Network</option>
+                </select>
+                <span class="absolute right-3.5 top-2.5 text-[7px] text-slate-600 pointer-events-none">&#9660;</span>
+              </div>
+
+              <!-- Discord community button badge outline -->
+              <div class="mb-5 select-none">
+                <a href="https://discord.gg/" target="_blank" class="inline-block border border-slate-800 hover:border-slate-700 bg-[#0c0f1d]/40 hover:bg-slate-900 px-6 py-2.5 text-[10.5px] text-zinc-400 hover:text-white font-semibold rounded-xl uppercase tracking-wider transition-all">
+                  join the discord for more links
+                </a>
+              </div>
+
+              <!-- Privacy Policy text link -->
+              <div>
+                <button type="button" onclick="launchProxyLink('https://frogieone.theworkpc.com/')" class="text-[10px] text-sky-500/70 hover:text-sky-450 font-bold tracking-widest font-mono uppercase cursor-pointer transition-all">
+                  privacy policy
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Loading Spinner -->
+          <div id="proxy-spinner" class="absolute inset-0 bg-[#020617]/95 flex flex-col items-center justify-center text-center p-6 z-25 hidden">
+            <div class="w-10 h-10 border-2 border-sky-400/25 border-t-sky-400 rounded-none animate-spin mb-3"></div>
+            <h4 class="text-[10px] font-black uppercase text-white tracking-widest">ENCRYPTING CLIENT REQUEST PACKETS</h4>
+            <p class="text-[9px] uppercase font-mono text-slate-500 mt-1 leading-relaxed">routing securely through CanLite's faster old Ultraviolet proxy...</p>
+          </div>
+
+          <!-- Sandbox Direct Proxy Iframe -->
+          <iframe id="iframe-proxy" class="w-full grow h-full border-0 bg-[#020617]" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-modals"></iframe>
+        </div>
+
+        <!-- Secure environment footer tracker -->
+        <div class="bg-[#0f172a] border border-[#1e293b] rounded-none p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-[10px] uppercase text-slate-500">
+          <div class="flex items-center gap-2">
+            <span id="proxy-network-dot" class="w-2 h-2 bg-emerald-500 rounded-none animate-pulse block"></span>
+            <span>Secured Emulation Proxy Node: <strong class="text-slate-300 font-black">CANLITE_UV_V1</strong></span>
+          </div>
+          <div class="flex items-center gap-2 select-none">
+            <span>ACTIVE CLIENT FRAME:</span>
+            <span id="txt-proxy-active-frame" class="text-sky-400 font-extrabold">NEW_TAB</span>
+          </div>
+        </div>
+
+      </div>
+
     </main>
 
     <!-- SYSTEM OUT-OF-SIGHT DECIMAL FOOTER -->
     <footer class="mt-auto border-t border-[#1e293b] text-slate-600 py-6 text-center text-[10px] bg-[#020617] uppercase tracking-wide">
       <div class="max-w-7xl mx-auto px-4 space-y-2">
         <p class="leading-relaxed font-mono">
-          Unblocked Games Hub is an open port directory designed for static offline emulation tests. Sourced via static frames.
+          Orbit is an open port directory designed for static offline emulation tests. Sourced via static frames.
         </p>
         <div class="flex justify-center items-center gap-3 text-slate-500 font-mono">
           <span>Decoy Status: <strong class="text-sky-400">ACTIVE</strong></span>
@@ -754,7 +1042,7 @@
         {
           id: 'normal',
           name: 'Normal (None)',
-          title: 'Unblocked Games Hub',
+          title: 'Orbit',
           iconUrl: 'https://img.icons8.com/color/48/game-controller.png',
         },
         {
@@ -792,6 +1080,35 @@
       let activePlayerTab = 'info';
       let isBindingKey = false;
 
+      // PROXY STATE LOGS
+      const PROXY_SEARCH_ENGINES = [
+        { id: 'google', name: 'Google', url: 'https://www.google.com/search?q=%s' },
+        { id: 'ddg', name: 'DuckDuckGo', url: 'https://duckduckgo.com/?q=%s' },
+        { id: 'bing', name: 'Bing', url: 'https://www.bing.com/search?q=%s' },
+        { id: 'yahoo', name: 'Yahoo', url: 'https://search.yahoo.com/search?p=%s' },
+        { id: 'brave', name: 'Brave', url: 'https://search.brave.com/search?q=%s' },
+        { id: 'searxng', name: 'SearXNG', url: 'https://searx.be/search?q=%s' },
+      ];
+
+      const PROXY_THEMES = [
+        { id: 'mocha', name: 'Mocha', bg: '#1e1e2e', panel: '#181825', border: '#313244', accent: '#cba6f7', text: '#cdd6f4' },
+        { id: 'macchiato', name: 'Macchiato', bg: '#24273a', panel: '#1e2030', border: '#36394f', accent: '#8aadf4', text: '#cad3f5' },
+        { id: 'frappe', name: 'Frappé', bg: '#303446', panel: '#292c3c', border: '#414559', accent: '#81c8be', text: '#c6d0f5' },
+        { id: 'latte', name: 'Latte Light', bg: '#eff1f5', panel: '#e6e9ef', border: '#ccd0da', accent: '#1e66f5', text: '#4c4f69' },
+        { id: 'nord', name: 'Nord', bg: '#2e3440', panel: '#242933', border: '#3b4252', accent: '#88c0d0', text: '#d8dee9' },
+        { id: 'rose-pine', name: 'Rosé Pine', bg: '#191724', panel: '#1f1d2e', border: '#26233a', accent: '#ebbcba', text: '#e0def4' },
+        { id: 'moss', name: 'Moss', bg: '#0c0f0a', panel: '#161c12', border: '#26331e', accent: '#a3c293', text: '#e4ebe0' },
+        { id: 'gruvbox', name: 'Gruvbox', bg: '#282828', panel: '#1d2021', border: '#3c3836', accent: '#fe8019', text: '#ebdbb2' },
+        { id: 'night', name: 'Midnight', bg: '#020617', panel: '#0f172a', border: '#1e293b', accent: '#38bdf8', text: '#f1f5f9' },
+      ];
+
+      // Retrieve Proxy Preferences
+      let activeProxyEngineId = localStorage.getItem('games_proxy_engine_id') || 'ddg';
+      let customProxyEngineTemplate = localStorage.getItem('games_proxy_engine_custom') || '';
+      let activeProxyThemeId = localStorage.getItem('games_proxy_theme_id') || 'night';
+      let proxyHistory = [];
+      let proxyHistoryIndex = -1;
+
       // Persistence Storage states
       let favorites = JSON.parse(localStorage.getItem('games_favorites_list')) || [];
       let customGames = JSON.parse(localStorage.getItem('games_user_custom_list')) || [];
@@ -802,6 +1119,7 @@
       // HTML DOM selectors
       const viewDirectory = document.getElementById('view-directory');
       const viewPlayer = document.getElementById('view-player');
+      const viewProxy = document.getElementById('view-proxy');
       const gamesGrid = document.getElementById('games-grid');
       const emptyDir = document.getElementById('empty-directory');
       const tabsContainer = document.getElementById('tabs-container');
@@ -840,6 +1158,28 @@
       const statFavsCount = document.getElementById('stat-favs-count');
       const statPlaysCount = document.getElementById('stat-plays-count');
 
+      // Web Proxy selectors
+      const btnOpenProxy = document.getElementById('btn-open-proxy');
+      const btnProxyBackLobby = document.getElementById('btn-proxy-back-lobby');
+      const btnProxyHomeToPane = document.getElementById('btn-proxy-home-to-pane');
+      const btnProxyNavBack = document.getElementById('btn-proxy-nav-back');
+      const btnProxyNavForward = document.getElementById('btn-proxy-nav-forward');
+      const btnProxyNavReload = document.getElementById('btn-proxy-nav-reload');
+      const formProxyAddress = document.getElementById('form-proxy-address');
+      const inputProxyAddress = document.getElementById('input-proxy-address');
+      const btnProxyEngineIndicator = document.getElementById('btn-proxy-engine-indicator');
+      const txtActiveEngine = document.getElementById('txt-active-engine');
+      const btnProxySettings = document.getElementById('btn-proxy-settings');
+      const btnProxyFullscreen = document.getElementById('btn-proxy-fullscreen');
+      const proxySettingsCard = document.getElementById('proxy-settings-card');
+      const proxyEngineGrid = document.getElementById('proxy-engine-grid');
+      const inputProxyEngineCustom = document.getElementById('input-proxy-engine-custom');
+      const proxyThemeSwatches = document.getElementById('proxy-theme-swatches');
+      const proxyEmptyPane = document.getElementById('proxy-empty-pane');
+      const proxySpinner = document.getElementById('proxy-spinner');
+      const iframeProxy = document.getElementById('iframe-proxy');
+      const txtProxyActiveFrame = document.getElementById('txt-proxy-active-frame');
+
       // Side log panel selectors
       const tabBtnInfo = document.getElementById('tab-btn-info');
       const tabBtnControls = document.getElementById('tab-btn-controls');
@@ -877,6 +1217,359 @@
         renderCategoryTabs();
         loadGamesCatalog();
         updateGlobalStats();
+        setupProxyPreferences();
+        initOrbitBackground();
+      }
+
+      // HIGH PERFORMANCE INTERACTIVE STELLAR NEBULA BACKGROUND ANIMATION
+      function initOrbitBackground() {
+        const canvas = document.getElementById('orbit-cosmic-bg');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        const stars = [];
+        const numStars = Math.min(65, Math.floor((width * height) / 25000)); // Adaptive density
+        const orbits = [];
+        const numOrbits = 4;
+
+        // Generate stars
+        for (let i = 0; i < numStars; i++) {
+          stars.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius: Math.random() * 1.5 + 0.5,
+            color: i % 4 === 0 ? 'rgba(56, 189, 248, ' : (i % 5 === 0 ? 'rgba(167, 139, 250, ' : 'rgba(255, 255, 255, '), // sky-400 or violet-400 or white
+            speedX: (Math.random() - 0.5) * 0.15,
+            speedY: (Math.random() - 0.5) * 0.15,
+            alpha: Math.random(),
+            pulseSpeed: 0.005 + Math.random() * 0.01
+          });
+        }
+
+        // Generate planetary orbit structures
+        const orbitAuraColors = ['#38bdf8', '#c084fc', '#f472b6', '#34d399']; // Cyan, Purple, Pink, Emerald
+        for (let i = 0; i < numOrbits; i++) {
+          const trackRadius = 130 + i * 110 + Math.random() * 20;
+          orbits.push({
+            radius: trackRadius,
+            speed: (0.001 + (numOrbits - i) * 0.0008) * (Math.random() > 0.5 ? 1 : -1),
+            angle: Math.random() * Math.PI * 2,
+            color: orbitAuraColors[i % orbitAuraColors.length],
+            size: 4 + Math.random() * 3,
+            dashedPattern: [4 + i * 2, 8 + i * 4]
+          });
+        }
+
+        let mouse = { x: -1000, y: -1000, active: false };
+
+        window.addEventListener('mousemove', (e) => {
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
+          mouse.active = true;
+        });
+
+        window.addEventListener('mouseleave', () => {
+          mouse.active = false;
+        });
+
+        window.addEventListener('resize', () => {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        });
+
+        function animate() {
+          ctx.clearRect(0, 0, width, height);
+
+          // Center coordinate for astronomical orbits
+          const centerX = width / 2;
+          const centerY = height / 2;
+
+          // 1. Draw Orbits lines & revolving solar spheres
+          orbits.forEach((orbit, index) => {
+            orbit.angle += orbit.speed;
+
+            // Draw clean orbital tracking lines (very thin, beautiful neon dashboard style)
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, orbit.radius, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(30, 41, 59, 0.45)`; // slate-800 soft layout
+            ctx.lineWidth = 1;
+            ctx.setLineDash(orbit.dashedPattern);
+            ctx.stroke();
+            ctx.setLineDash([]); // Reset standard lines
+
+            // Compute celestial body position
+            const bodyX = centerX + Math.cos(orbit.angle) * orbit.radius;
+            const bodyY = centerY + Math.sin(orbit.angle) * orbit.radius;
+
+            // Draw soft orbit glowing tail
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, orbit.radius, orbit.angle - (orbit.speed * 20), orbit.angle);
+            ctx.strokeStyle = `rgba(${index === 0 ? '56,189,248' : index === 1 ? '192,132,252' : index === 2 ? '244,114,182' : '52,211,153'}, 0.22)`;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            // Draw planetary orb sphere
+            ctx.beginPath();
+            ctx.arc(bodyX, bodyY, orbit.size, 0, Math.PI * 2);
+            ctx.fillStyle = orbit.color;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = orbit.color;
+            ctx.fill();
+            ctx.shadowBlur = 0; // Reset blur for speed optimization
+          });
+
+          // 2. Draw & connect star particles (space constellation grid mesh)
+          stars.forEach((star, i) => {
+            // Idle float movement
+            star.x += star.speedX;
+            star.y += star.speedY;
+
+            // Wrap margins
+            if (star.x < 0) star.x = width;
+            if (star.x > width) star.x = 0;
+            if (star.y < 0) star.y = height;
+            if (star.y > height) star.y = 0;
+
+            // Soft star alpha pulse
+            star.alpha += star.pulseSpeed;
+            if (star.alpha > 1 || star.alpha < 0.1) {
+              star.pulseSpeed = -star.pulseSpeed;
+            }
+
+            // Mouse gravitational sway attraction
+            if (mouse.active) {
+              const dx = mouse.x - star.x;
+              const dy = mouse.y - star.y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < 180) {
+                const force = (180 - dist) / 180;
+                star.x -= dx * force * 0.015;
+                star.y -= dy * force * 0.015;
+              }
+            }
+
+            // Draw individual star
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+            ctx.fillStyle = star.color + Math.max(0.1, star.alpha) + ')';
+            ctx.fill();
+
+            // Web connecting constellation lines
+            for (let j = i + 1; j < stars.length; j++) {
+              const other = stars[j];
+              const dx = star.x - other.x;
+              const dy = star.y - other.y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+
+              if (dist < 115) {
+                const alpha = (115 - dist) / 115 * 0.09;
+                ctx.beginPath();
+                ctx.moveTo(star.x, star.y);
+                ctx.lineTo(other.x, other.y);
+                ctx.strokeStyle = `rgba(96, 165, 250, ${alpha})`; // soft blue sky mesh lines
+                ctx.lineWidth = 0.5;
+                ctx.stroke();
+              }
+            }
+          });
+
+          requestAnimationFrame(animate);
+        }
+
+        // Launch frame loops
+        animate();
+      }
+
+      // PROXY SETUP PREFERENCES
+      function setupProxyPreferences() {
+        renderProxyEnginesList();
+        renderProxyThemesList();
+        applyProxyTheme(activeProxyThemeId);
+        
+        // Populate indicator texts
+        const activeEng = PROXY_SEARCH_ENGINES.find(e => e.id === activeProxyEngineId) || PROXY_SEARCH_ENGINES[1];
+        txtActiveEngine.innerText = activeEng.name;
+        inputProxyEngineCustom.value = customProxyEngineTemplate;
+      }
+
+      function renderProxyEnginesList() {
+        proxyEngineGrid.innerHTML = '';
+        PROXY_SEARCH_ENGINES.forEach(engine => {
+          const isActive = activeProxyEngineId === engine.id;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `p-2 text-[10px] uppercase font-bold tracking-wider rounded-none border text-center transition-all cursor-pointer ${
+            isActive
+              ? 'bg-emerald-500 border-emerald-500 text-[#020617] font-black'
+              : 'bg-[#020617] border-[#1e293b] text-slate-400 hover:text-white hover:border-slate-600'
+          }`;
+          btn.innerText = engine.name;
+          btn.onclick = () => {
+            activeProxyEngineId = engine.id;
+            localStorage.setItem('games_proxy_engine_id', engine.id);
+            txtActiveEngine.innerText = engine.name;
+            renderProxyEnginesList();
+          };
+          proxyEngineGrid.appendChild(btn);
+        });
+      }
+
+      function renderProxyThemesList() {
+        proxyThemeSwatches.innerHTML = '';
+        PROXY_THEMES.forEach(theme => {
+          const isActive = activeProxyThemeId === theme.id;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `p-2 text-[10px] uppercase font-bold rounded-none border flex items-center justify-between gap-1.5 transition-all cursor-pointer ${
+            isActive
+              ? 'bg-sky-400 border-sky-400 text-slate-950 font-black'
+              : 'bg-[#020617] border-[#1e293b] text-slate-400 hover:text-white hover:border-slate-600'
+          }`;
+          
+          btn.onclick = () => {
+            activeProxyThemeId = theme.id;
+            localStorage.setItem('games_proxy_theme_id', theme.id);
+            applyProxyTheme(theme.id);
+            renderProxyThemesList();
+          };
+
+          btn.innerHTML = `
+            <span class="truncate pr-1">${theme.name}</span>
+            <span class="w-2.5 h-2.5 inline-block shrink-0 rounded-full border border-white/20" style="background-color: ${theme.accent}"></span>
+          `;
+          proxyThemeSwatches.appendChild(btn);
+        });
+      }
+
+      function applyProxyTheme(themeId) {
+        const theme = PROXY_THEMES.find(t => t.id === themeId) || PROXY_THEMES[8];
+        
+        // Dynamically insert or update thematic stylesheet selectors to root overrides
+        let styleNode = document.getElementById('proxy-dyn-theme-styles');
+        if (!styleNode) {
+          styleNode = document.createElement('style');
+          styleNode.id = 'proxy-dyn-theme-styles';
+          document.head.appendChild(styleNode);
+        }
+
+        // Apply custom styling overrides to container elements for immersive presets
+        styleNode.innerHTML = `
+          .proxy-theme-active {
+            --proxy-bg: ${theme.bg};
+            --proxy-panel: ${theme.panel};
+            --proxy-border: ${theme.border};
+            --proxy-accent: ${theme.accent};
+            --proxy-text: ${theme.text};
+          }
+        `;
+
+        // Add class to body if it doesn't already have it
+        document.body.classList.add('proxy-theme-active');
+        
+        // Apply custom inline transitions or inline style properties to the proxy view container
+        viewProxy.style.backgroundColor = 'var(--proxy-bg)';
+        viewProxy.querySelectorAll('.bg-\\[\\#0f172a\\]').forEach(el => {
+          el.style.backgroundColor = 'var(--proxy-panel)';
+        });
+        viewProxy.querySelectorAll('.border-\\[\\#1e293b\\]').forEach(el => {
+          el.style.borderColor = 'var(--proxy-border)';
+        });
+        viewProxy.querySelectorAll('.bg-\\[\\#020617\\]').forEach(el => {
+          el.style.backgroundColor = 'var(--proxy-bg)';
+        });
+      }
+
+      function launchProxyEngine(input) {
+        let targetUrl = input.trim();
+        if (!targetUrl) return;
+
+        // Ensure we direct to frogieone.theworkpc.com/ if not already loading it
+        const isFrogie = targetUrl.includes('frogieone.theworkpc.com');
+        let processedUrl = 'https://frogieone.theworkpc.com/';
+
+        if (isFrogie) {
+          processedUrl = targetUrl;
+        } else {
+          inputProxyAddress.value = 'https://frogieone.theworkpc.com/';
+        }
+
+        // Display spinner & status info
+        proxySpinner.classList.remove('hidden');
+        proxyEmptyPane.classList.add('hidden');
+        txtProxyActiveFrame.innerText = 'FROGIEONE PROXY ACTIVE';
+
+        // Push to routing history logs
+        if (proxyHistoryIndex === -1 || proxyHistory[proxyHistoryIndex] !== processedUrl) {
+          proxyHistory = proxyHistory.slice(0, proxyHistoryIndex + 1);
+          proxyHistory.push(processedUrl);
+          proxyHistoryIndex++;
+        }
+
+        iframeProxy.src = processedUrl;
+        iframeProxy.onload = () => {
+          proxySpinner.classList.add('hidden');
+        };
+      }
+
+      // External helper trigger for suggestion items click
+      function launchProxyLink(link) {
+        inputProxyAddress.value = 'Proxying suggestions inside FrogieOne...';
+        launchProxyEngine('https://frogieone.theworkpc.com/');
+      }
+
+      // Dock Navigation Global triggers supporting dynamic widgets
+      function showLobbyFromDock() {
+        if (selectedGame) exitPlayerToLobby();
+        exitProxyToLobby();
+      }
+      function openProxyFromDock() {
+        openProxyStation();
+      }
+      function openCloakerFromDock() {
+        toggleCloakModal(true);
+      }
+      function openEmbedFromDock() {
+        toggleAddGameModal(true);
+      }
+
+      window.showLobbyFromDock = showLobbyFromDock;
+      window.openProxyFromDock = openProxyFromDock;
+      window.openCloakerFromDock = openCloakerFromDock;
+      window.openEmbedFromDock = openEmbedFromDock;
+
+      function exitProxyToLobby() {
+        viewProxy.classList.add('hidden');
+        viewDirectory.classList.remove('hidden');
+        iframeProxy.src = '';
+        txtProxyActiveFrame.innerText = 'NEW_TAB';
+        inputProxyAddress.value = '';
+        proxyEmptyPane.classList.remove('hidden');
+        proxySpinner.classList.add('hidden');
+        proxySettingsCard.classList.add('hidden');
+      }
+
+      function openProxyStation() {
+        // Hide player if open
+        selectedGame = null;
+        iframePlay.src = '';
+        viewPlayer.classList.add('hidden');
+        
+        viewDirectory.classList.add('hidden');
+        viewProxy.classList.remove('hidden');
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Show the beautiful COSMIC UNBLOCKED PORTAL lobby start screen initially !
+        // This ensures the 6 beautiful custom unblocked app shortcut buttons are completely visible and interactive on click.
+        iframeProxy.src = '';
+        txtProxyActiveFrame.innerText = 'COSMIC PORTAL';
+        inputProxyAddress.value = '';
+        proxyEmptyPane.classList.remove('hidden');
+        proxySpinner.classList.add('hidden');
       }
 
       // LOAD CATALOG MERGING LIST
@@ -1338,7 +2031,7 @@
         
         // Disguise site Document Title
         if (activeCamoPresetId === 'normal') {
-          document.title = 'Unblocked Games Hub';
+          document.title = 'Orbit';
         } else {
           document.title = preset.title;
         }
@@ -1606,6 +2299,98 @@
           panicRedirect = val;
           localStorage.setItem('games_panic_redirect', val);
         };
+
+        // Web Proxy listeners
+        if (btnOpenProxy) {
+          btnOpenProxy.onclick = openProxyStation;
+        }
+        if (btnProxyBackLobby) {
+          btnProxyBackLobby.onclick = exitProxyToLobby;
+        }
+        if (btnProxyHomeToPane) {
+          btnProxyHomeToPane.onclick = () => {
+            iframeProxy.src = '';
+            txtProxyActiveFrame.innerText = 'COSMIC PORTAL';
+            inputProxyAddress.value = '';
+            proxyEmptyPane.classList.remove('hidden');
+            proxySpinner.classList.add('hidden');
+          };
+        }
+
+        if (formProxyAddress) {
+          formProxyAddress.onsubmit = (e) => {
+            e.preventDefault();
+            launchProxyEngine(inputProxyAddress.value);
+          };
+        }
+
+        if (btnProxySettings) {
+          btnProxySettings.onclick = () => {
+            proxySettingsCard.classList.toggle('hidden');
+          };
+        }
+
+        if (btnProxyEngineIndicator) {
+          btnProxyEngineIndicator.onclick = () => {
+            proxySettingsCard.classList.remove('hidden');
+            inputProxyEngineCustom.focus();
+          };
+        }
+
+        if (btnProxyNavBack) {
+          btnProxyNavBack.onclick = () => {
+            if (proxyHistoryIndex > 0) {
+              proxyHistoryIndex--;
+              const prevUrl = proxyHistory[proxyHistoryIndex];
+              inputProxyAddress.value = prevUrl;
+              launchProxyEngine(prevUrl);
+            }
+          };
+        }
+
+        if (btnProxyNavForward) {
+          btnProxyNavForward.onclick = () => {
+            if (proxyHistoryIndex < proxyHistory.length - 1) {
+              proxyHistoryIndex++;
+              const nextUrl = proxyHistory[proxyHistoryIndex];
+              inputProxyAddress.value = nextUrl;
+              launchProxyEngine(nextUrl);
+            }
+          };
+        }
+
+        if (btnProxyNavReload) {
+          btnProxyNavReload.onclick = () => {
+            if (proxyHistoryIndex !== -1) {
+              const currentUrl = proxyHistory[proxyHistoryIndex];
+              launchProxyEngine(currentUrl);
+            } else {
+              iframeProxy.src = iframeProxy.src;
+            }
+          };
+        }
+
+        if (btnProxyFullscreen) {
+          btnProxyFullscreen.onclick = () => {
+            const viewport = document.getElementById('proxy-viewport-box');
+            if (viewport) {
+              if (!document.fullscreenElement) {
+                viewport.requestFullscreen().catch((err) => {
+                  console.error(`Error enabling proxy fullscreen mode: ${err.message}`);
+                });
+              } else {
+                document.exitFullscreen();
+              }
+            }
+          };
+        }
+
+        if (inputProxyEngineCustom) {
+          inputProxyEngineCustom.oninput = (e) => {
+            customProxyEngineTemplate = e.target.value;
+            localStorage.setItem('games_proxy_engine_custom', customProxyEngineTemplate);
+          };
+        }
 
         // Keyboard Panic binders
         window.addEventListener('keydown', (e) => {
